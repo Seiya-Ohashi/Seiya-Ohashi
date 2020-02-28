@@ -3,7 +3,6 @@ package calc;
 import java.util.Scanner;
 
 public class task3 {
-
 	public static void main(String[] args) {
 		System.out.println("入力");
 		Scanner sc = new Scanner(System.in);
@@ -19,5 +18,4 @@ public class task3 {
 		System.out.println("平均(3で割った時):" + averageInt);
 		System.out.println("平均(3.0で割った時):" + averageDouble);
 	}
-
 }

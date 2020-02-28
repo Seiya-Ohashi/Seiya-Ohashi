@@ -3,7 +3,6 @@ package calc;
 import java.util.Scanner;
 
 public class task5 {
-
 	public static void main(String[] args) {
 		String pc = "ノートPCの値段:";
 		char unit = '円';
@@ -18,5 +17,4 @@ public class task5 {
 		System.out.println(str2);
 		System.out.println(str1 + str2);
 	}
-
 }

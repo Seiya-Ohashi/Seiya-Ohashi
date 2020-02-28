@@ -1,7 +1,6 @@
 package calc;
 
 public class task2 {
-
 	public static void main(String[] args) {
 		int a = 10;
 		int b = 12;
@@ -14,5 +13,4 @@ public class task2 {
 		System.out.println("平均(3で割った時):" + averageInt);
 		System.out.println("平均(3.0で割った時):" + averageDouble);
 	}
-
 }
