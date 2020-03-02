@@ -13,8 +13,6 @@ public class task5 {
 		String str1 = sc.nextLine();
 		String str2 = sc.nextLine();
 		sc.close();
-		System.out.println(str1);
-		System.out.println(str2);
 		System.out.println(str1 + str2);
 	}
 }

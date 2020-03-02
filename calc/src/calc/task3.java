@@ -11,8 +11,8 @@ public class task3 {
 		int c = sc.nextInt();
 		sc.close();
 		int total = a + b + c;
-		int averageInt = ((a + b + c)/3);
-		Double averageDouble =((a + b + c)/3.0);
+		int averageInt = ((a + b + c) / 3);
+		Double averageDouble =((a + b + c) / 3.0);
 
 		System.out.println("合計:" + total);
 		System.out.println("平均(3で割った時):" + averageInt);
