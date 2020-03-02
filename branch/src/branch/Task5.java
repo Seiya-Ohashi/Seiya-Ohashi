@@ -6,21 +6,17 @@ public class Task5 {
 	public static void main(String[] args) {
 		System.out.println("数字を入力してください");
 		Scanner sc = new Scanner(System.in);
+		System.out.print("numA: ");
 		int numA = sc.nextInt();
+		System.out.print("numB: ");
 		int numB = sc.nextInt();
+		if(numA < numB){
+			numA = numB;
+		}System.out.print("numC: ");
 		int numC = sc.nextInt();
+		if(numA < numC){
+			numA = numC;
+		}System.out.println("最大値 " + numA);
 		sc.close();
-
-		System.out.println("numA: " + numA);
-		System.out.println("numB: " + numB);
-		System.out.println("numC: " + numC);
-
-		if(numA >= numB && numA >= numC){
-			System.out.println("最大値: " + numA);
-		}else if(numB >= numA && numB >= numC){
-			System.out.println("最大値: " + numB);
-		}else{
-			System.out.println("最大値: " + numC);
-		}
 	}
 }

@@ -5,30 +5,31 @@ import java.util.Scanner;
 public class Task6 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int i = sc.nextInt();
+		System.out.println("1〜5までの数字を入力してください");
+		int num = sc.nextInt();
 		sc.close();
-		String str = String.valueOf(i);
+		String romaNumber ="";
 
-		switch(i){
+		switch(num){
 		case 1:
-			str = "Ⅰ";
+			romaNumber = "Ⅰ";
 			break;
 		case 2:
-			str = "Ⅱ";
+			romaNumber = "Ⅱ";
 			break;
 		case 3:
-			str = "Ⅲ";
+			romaNumber = "Ⅲ";
 			break;
 		case 4:
-			str = "Ⅳ";
+			romaNumber = "Ⅳ";
 			break;
 		case 5:
-			str = "Ⅴ";
+			romaNumber = "Ⅴ";
 			break;
 		default:
-			str = "unknown";
+			romaNumber = "unknown";
 			break;
 		};
-		System.out.println(i + " -> " + str);
+		System.out.println(num + " -> " + romaNumber);
 	}
 }
