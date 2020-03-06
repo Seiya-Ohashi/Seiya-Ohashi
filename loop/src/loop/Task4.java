@@ -13,9 +13,8 @@ public class Task4 {
 		for(int count = 1; count <= num; count++){
 			if(num % count == 0  && count < num){
 				System.out.print(count + ",");
-			}if(num % count == 0  && count == num){
-				System.out.print(count);
 			}
 		}
+		System.out.print(num);
 	}
 }
