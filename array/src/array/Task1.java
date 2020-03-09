@@ -13,10 +13,9 @@ public class Task1 {
 				System.out.println(numbers[i] + "]");
 			}
 		}
-		System.out.print("合計: ");
 		for (int num : numbers) {
 			sum += num;
 		}
-		System.out.print(sum);
+		System.out.print("合計: " + sum);
 	}
 }

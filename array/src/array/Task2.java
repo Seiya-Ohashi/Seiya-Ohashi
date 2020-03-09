@@ -11,7 +11,8 @@ public class Task2 {
 			}else{
 				System.out.println(numbers[i-1]);
 			}
-		}for (int num : numbers){
+		}
+		for (int num : numbers){
 			if(num < numbers.length) {
 				System.out.print(num + ",");
 			}else{
