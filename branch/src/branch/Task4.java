@@ -14,6 +14,7 @@ public class Task4 {
 
 		if(numA <= 0 || numB <= 0){
 			System.out.println("正の数を入力してください");
+			return;
 		}else if(numA % numB == 0){
 			System.out.println("numBはnumAの約数です");
 		}else{
