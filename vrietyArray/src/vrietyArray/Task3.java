@@ -11,10 +11,9 @@ public class Task3 {
 		fruit.put("メロン" ,6000);
 		fruit.put("みかん" ,120);
 		fruit.put("バナナ" ,98);
-		System.out.println("りんご:" + fruit.get("りんご") + "円");
-		System.out.println("メロン:" + fruit.get("メロン") + "円");
-		System.out.println("みかん:" + fruit.get("みかん") + "円");
-		System.out.println("バナナ:" + fruit.get("バナナ") + "円");
+		for(HashMap.Entry<String, Integer> num : fruit.entrySet()) {
+			System.out.println(num.getKey() + ":" + num.getValue() + "円");
+		}
 	}
 
 }
