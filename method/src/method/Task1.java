@@ -6,7 +6,7 @@ public class Task1 {
 		String name = "コラボ";
 		int    age = 30;
 		float  height = 178F;
-		myProfile(name,age,height);
+		myProfile(name, age, height);
 	}
 	public static void myProfile(String name, int age, float height){
 		System.out.println("私の名前は" + name + "です。");
