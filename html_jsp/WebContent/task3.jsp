@@ -4,7 +4,6 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>JSP KADAI</title>
