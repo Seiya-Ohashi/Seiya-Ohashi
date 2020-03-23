@@ -19,13 +19,13 @@ public class Task8 {
 			System.out.println("中央値: " + numA);
 		}else if(numA <= numB && numA >= numC){
 			System.out.println("中央値: " + numA);
-
-		}if(numB >= numA && numB <= numC){
+		}
+		if(numB >= numA && numB <= numC){
 			System.out.println("中央値: " + numB);
 		}else if(numB <= numA && numB >= numC){
 			System.out.println("中央値: " + numB);
-
-		}if(numC >= numA && numC <= numB){
+		}
+		if(numC >= numA && numC <= numB){
 			System.out.println("中央値: " + numC);
 		}else if(numC <= numA && numC >= numB){
 			System.out.println("中央値: " + numC);

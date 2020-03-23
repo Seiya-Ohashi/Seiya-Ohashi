@@ -11,7 +11,7 @@ public class Task1 {
 
 		if(number >= 10){
 			System.out.println("値: " + number);
-		}if(number < 10){
+		}else if(number < 10){
 			System.out.println("値: " + number * 10);
 		}
 	}
