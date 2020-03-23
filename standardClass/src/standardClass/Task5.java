@@ -10,7 +10,6 @@ public class Task5 {
 		for(String target : textArray) {
 			if(target.equals("cat")) {
 				cat++;
-				continue;
 			}else if(target.equals("mouse")){
 				mouse++;
 			}
