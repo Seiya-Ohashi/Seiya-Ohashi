@@ -14,7 +14,7 @@ package object;
 		}
 
 		//眠る
-		public void sleep(String name) {
+		public void sleep() {
 			System.out.println("眠った");
 		}
 	}
