@@ -19,9 +19,9 @@ public class Task2 extends HttpServlet {
 		response.setContentType("text/html; charset = UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE html>");
-		out.println("<hrml>");
+		out.println("<html>");
 		out.println("<head>");
-		out.println("<meta charset = !UTF-8! >");
+		out.println("<meta charset=\"UTF-8\">");
 		out.println("<title>Servlet Task</title>");
 		out.println("</head>");
 		out.println("<body>");
