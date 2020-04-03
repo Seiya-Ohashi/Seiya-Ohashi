@@ -12,4 +12,4 @@ public class Main {
 		sleepAnimal.sleep();
 		pochi.sleep();
 	}
-}//
+}
