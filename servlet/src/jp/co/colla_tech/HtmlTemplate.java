@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 public class HtmlTemplate extends HttpServlet {
 	public static void header(PrintWriter out) {
 		out.println("<!DOCTYPE html>");
-		out.println("<hrml>");
+		out.println("<html>");
 		out.println("<head>");
-		out.println("<meta charset = !UTF-8! >");
+		out.println("<meta charset = \"UTF-8!\">");
 		out.println("<title>Servlet Kadai</title>");
 		out.println("</head>");
 		out.println("<body>");
