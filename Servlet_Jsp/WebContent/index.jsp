@@ -7,8 +7,8 @@
 <title>index</title>
 </head>
 <body>
-	<input type="button" value="HelloServlet" onClick="location.href='Task1'">
-	<p><a href="Task2">Hellojsp</a></p>
-	<input type="button" value="占い" onClick="location.href='Task4'">
+	<input type="button" value="HelloServlet" onClick="location.href='task1'">
+	<p><a href="task2">Hellojsp</a></p>
+	<input type="button" value="占い" onClick="location.href='task4'">
 </body>
 </html>

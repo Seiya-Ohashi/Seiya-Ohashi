@@ -7,6 +7,6 @@
 <title>Hello.jsp</title>
 </head>
 <body>
-<h1>HelloServlet</h1>
+	<h1>HelloServlet</h1>
 </body>
 </html>
