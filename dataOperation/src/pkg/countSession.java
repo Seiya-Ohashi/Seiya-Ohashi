@@ -27,8 +27,7 @@ public class countSession extends HttpServlet {
 		out.println("<h1>訪問回数テスト(セッション)</h1>");
 
 		HttpSession session = request.getSession();
-		Integer num =(Integer) session.getAttribute("count");
-
+		Integer num =(Integer)session.getAttribute("count");
 		if(num != null){
 			out.println("<p>" + num + "回目の訪問です</p>");
 			session.setAttribute("count", num + 1);

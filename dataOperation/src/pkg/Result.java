@@ -14,7 +14,7 @@ public class Result extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/plain; charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
@@ -22,11 +22,35 @@ public class Result extends HttpServlet {
 		String contactType = request.getParameter("contactType");
 		String content = request.getParameter("content");
 
-		out.println("以下の内容でお問い合わせしました。回答をお待ち下さい。");
-		out.println("名前:" + name + "様");
-		out.println("性別:" + sex);
-		out.println("お問い合わせ種類:" + contactType);
-		out.println("お問い合わせ内容:" + content);
+		if(sex == "male"){
+			sex = "男性";
+		}else{
+			sex = "女性";
+		}
+
+		if(contactType == "About product"){
+			contactType = "製品について";
+		}else if(contactType == "Bugs or complaints"){
+			contactType = "不具合やクレーム";
+		}else{
+			contactType = "アフターサポート";
+		}
+
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<meta charset=\"UTF-8\">");
+		out.println("<title>Result</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<p>以下の内容でお問い合わせしました。回答をお待ち下さい。</p>");
+		out.println("<p>名前:" + name + "様</p>");
+		out.println("<p>性別:" + sex + "</p>");
+		out.println("<p>お問い合わせ種類:" + contactType + "</p>");
+		out.println("<p>お問い合わせ内容:" + content + "</p>");
+		out.println("</body>");
+		out.println("</html>");
+
 	}
 
 }

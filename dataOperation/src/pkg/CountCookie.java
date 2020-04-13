@@ -42,6 +42,11 @@ public class CountCookie extends HttpServlet {
 				visitedCookie.setValue(Integer.toString(visitedCount));
 				visitedCookie.setMaxAge(300);
 				response.addCookie(visitedCookie);
+			}else{
+				out.println("<p>初めての訪問です</p>");
+				Cookie newCookie = new Cookie("count","1");
+				newCookie.setMaxAge(300);
+				response.addCookie(newCookie);
 			}
 		}else{
 			out.println("<p>初めての訪問です</p>");

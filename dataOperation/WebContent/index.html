@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 	<head>
-	<meta charset="UTF-8">
+		<meta  http-equiv="content-type" content="text/html; charset=UTF-8">
 		<title>index</title>
 	</head>
 	<body>
 		<form action = "/dataOperation/Result" method="POST">
 			<p>
-			名前:<input type = "text" name = "name">
+				名前:<input type="text" name="name">
 			</p>
 			<p>
-			性別:男<input type = "radio" name="sex" value="男性">
-			女<input type = "radio" name="sex" value="女性">
+				性別:男<input type="radio" name="sex" value="male">
+				女<input type="radio" name="sex" value="female">
 			</p>
 			<p>お問い合わせ種類
-			<select name = "contactType">
-			<option value="製品について">製品について</option>
-			<option value="不具合やクレーム">不具合やクレーム</option>
-			<option value="アフターサポート">アフターサポート</option>
+				<select name="contactType">
+				<option value="About product">製品について</option>
+				<option value="Bugs or complaints">不具合やクレーム</option>
+				<option value="After support">アフターサポート</option>
 			</select>
 			</p>
 			<p>
-			お問い合わせ内容
+				お問い合わせ内容
 			</p>
-			<textarea name = "content" cols="50" rows="5">
-		150文字以内で入力してください
+			<textarea name="content" cols="50" rows="5">
+				150文字以内で入力してください
 			</textarea>
 			<p>
-			<input type = "submit" name = "sending" value = "送信">
+				<input type = "submit" name = "sending" value = "送信">
 			</p>
 		</form>
 	</body>
