@@ -43,7 +43,6 @@ public class Register extends HttpServlet {
 
 			int num = ps.executeUpdate();
 			ps.close();
-			System.out.println(num + "行追加されました。");
 
 		}catch(SQLException e){
 			System.out.println("DB接続やSQL処理失敗時の処理");
