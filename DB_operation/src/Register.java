@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +24,17 @@ public class Register extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
+		//文字列→util.Date型→SetDate用にsqlDate型へ変換
 		String birthDay = request.getParameter("birthday");
-		java.sql.Date birthDayDate = java.sql.Date.valueOf(birthDay);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date utilBirthDay = new java.util.Date();
+		try {
+			utilBirthDay = sdf.parse(birthDay);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		java.sql.Date sqlBirthDay = new java.sql.Date(utilBirthDay.getTime());
+
 		int age = Integer.parseInt(request.getParameter("age"));
 
 		Connection con = null;
@@ -31,17 +42,20 @@ public class Register extends HttpServlet {
 		String user = "ai";
 		String password = "01000400";
 		try{
+			  // ドライバの読み込み(MySQL)
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			  // DB接続
 			con = DriverManager.getConnection(url, user, password);
+			  // SQL文の実行(挿入)
 			String sql = "INSERT INTO employee (id, name, birthday, age) values (?, ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-
+			  // ｢？｣に設定
 			ps.setInt(1, id);
 			ps.setString(2, name);
-			ps.setDate(3, birthDayDate);
+			ps.setDate(3, sqlBirthDay);
 			ps.setInt(4, age);
 
-			int num = ps.executeUpdate();
+			ps.executeUpdate();
 			ps.close();
 
 		}catch(SQLException e){

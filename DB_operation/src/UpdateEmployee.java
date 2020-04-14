@@ -29,13 +29,17 @@ public class UpdateEmployee extends HttpServlet {
 		String user = "ai";
 		String password = "01000400";
 		try{
+			  // ドライバの読み込み(MySQL)
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			  // DB接続
 			con = DriverManager.getConnection(url, user, password);
+			  // SQL文の実行(指定したIDのnameを別のnameに変更)
 			String sql = "UPDATE employee SET name = ? WHERE id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setInt(2, id);
-			int num = ps.executeUpdate();
+
+			ps.executeUpdate();
 			ps.close();
 
 		}catch(SQLException e){
