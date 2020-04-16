@@ -28,6 +28,7 @@ public class countSession extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Integer num =(Integer)session.getAttribute("count");
+
 		if(session != null){
 			if(num != null){
 				num++;
