@@ -1,5 +1,5 @@
 package pkg;
-
+//
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -28,18 +28,24 @@ public class countSession extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Integer num =(Integer)session.getAttribute("count");
-		if(num != null){
-			out.println("<p>" + num + "回目の訪問です</p>");
-			session.setAttribute("count", num + 1);
+		if(session != null){
+			if(num != null){
+				num++;
+				out.println("<p>" + num + "回目の訪問です</p>");
+				session.setAttribute("count",num);
+			}else{
+				out.println("<p>初めての訪問です</p>");
+				session.setAttribute("count", 1);
+			}
 		}else{
+			session = request.getSession();
 			out.println("<p>初めての訪問です</p>");
-			HttpSession newSession = request.getSession();
-			newSession.setAttribute("count", 2);
+			session.setAttribute("count", 1);
 		}
 		out.println("<a href=/dataOperation/countSession>");
 		out.println("画面を再訪問");
 		out.println("</a>");
 		out.println("</body>");
 		out.println("</html>");
-	}
+		}
 }
