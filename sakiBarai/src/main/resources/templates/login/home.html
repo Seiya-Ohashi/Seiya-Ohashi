@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"></meta>
+</head>
+	<body>
+			<h1>ホーム</h1>
+			<p>ようこそ<span th:text="${name}"></span>さん</p>
+			<a th:href="@{/userDetail}">プロフィールはこちら</a>
+			<a th:href="@{/logout}">ログアウト</a>
+	</body>
+</html>
