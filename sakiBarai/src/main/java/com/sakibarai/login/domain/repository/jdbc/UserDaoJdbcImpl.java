@@ -50,7 +50,7 @@ public class UserDaoJdbcImpl implements UserDao{
 				return rowNumber;
 	}
 
-	//Userテーブルのデータを1件取得だけ取得するメソッド(①ホームのユーザー名表示、プロフィール画面に使う)
+	//Userテーブルのデータを1件取得だけ取得するメソッド(ホームのユーザー名表示、プロフィール画面に使う)
 	@Override
 	public User selectOne(String mailAddress)throws DataAccessException{
 		//1件取得
@@ -148,4 +148,3 @@ public class UserDaoJdbcImpl implements UserDao{
 // PreparedStatementには、SQL文の？の部分に入れる変数を引数にセットしていく
 // 引数にセットした順番にSQL文に代入されていく
 // updateメソッドの戻り値には、登録したレコード数が返ってくる
-//---------------------------------------------------------------
