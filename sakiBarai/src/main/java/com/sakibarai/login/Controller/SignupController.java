@@ -85,7 +85,7 @@ public class SignupController {
 //	@GetMapping("/signup")
 //	public String getSignUp(SignupForm form, Model model){
 //		model.addAttribute("SignupForm",form);	フォームクラスをModelに登録
-//		return"login/signup";					login.htmlに画面遷移
+//		return"login/signup";			login.htmlに画面遷移
 //	}
 // @ModelAttributeを付けた場合、
 // デフォルトではクラス名の最初の文字を小文字に変えた文字列が、キー名に登録される
