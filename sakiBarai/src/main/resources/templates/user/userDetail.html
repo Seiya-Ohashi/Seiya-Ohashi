@@ -10,7 +10,6 @@
 				<div class="page-header">
 					<h1>プロフィール編集</h1>
 				</div>
-				<p th:text="${signupForm}"></p>
 				<form method="post" th:action="@{/userDetail}"
 					th:object="${signupForm}"><!-- ←テスト用 -->
 					<table class="table table-bordered table-hover">
@@ -58,8 +57,8 @@
 					<button class="btn btn-primary btn-lg pull-right" type="submit"
 						name="update">更新</button>
 					<!-- 戻るボタン -->
-					<button class="btn btn-danger btn-lg" type="submit"
-						name="back">戻る</button>
+					<button class="btn btn-danger btn-lg" type="button"
+						 onclick="location.href='./home'">戻る</button>
 				</form>
 			</div>
 		</div>

@@ -23,9 +23,14 @@ public class UserService{
 		}
 		return result;
 	}
-	// 1件取得用メソッド
+	// 1件取得用メソッド(ログイン後ホーム遷移時のみ使用)
 	public User selectOne(String mailAddress){
 		return dao.selectOne(mailAddress);
+	}
+
+	// 1件取得用メソッド
+	public User selectOneId(int userId){
+		return dao.selectOneId(userId);
 	}
 
 	//１件更新メソッド

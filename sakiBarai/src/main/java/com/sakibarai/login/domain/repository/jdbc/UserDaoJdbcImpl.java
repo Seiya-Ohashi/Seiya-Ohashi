@@ -50,12 +50,29 @@ public class UserDaoJdbcImpl implements UserDao{
 				return rowNumber;
 	}
 
-	//Userテーブルのデータを1件取得だけ取得するメソッド(ホームのユーザー名表示、プロフィール画面に使う)
+	//Userテーブルのデータを1件取得だけ取得するメソッド(ログイン後ホーム遷移時のみ使用)
 	@Override
 	public User selectOne(String mailAddress)throws DataAccessException{
 		//1件取得
+		System.out.println("初回jdbc:"+mailAddress);
 		Map<String,Object>map = jdbc.queryForMap("SELECT * FROM `user_info` "
 				+ "WHERE `mail_address` = ?", mailAddress);
+		//結果返却用の変数
+		User user = new User();
+		//取得したデータを結果返却用の変数にセットしていく
+		user.setUserId((Integer)map.get("user_id"));// ユーザーID
+		user.setUserName((String)map.get("user_name"));// ユーザー名
+		user.setMailAddress((String)map.get("mail_address"));// メールアドレス
+		user.setPassword((String)map.get("password"));// パスワード
+
+		return user;
+	}
+	//Userテーブルのデータを1件取得だけ取得するメソッド
+	@Override
+	public User selectOneId(int userId)throws DataAccessException{
+		//1件取得
+		Map<String,Object>map = jdbc.queryForMap("SELECT * FROM `user_info` "
+				+ "WHERE `user_id` = ?", userId);
 		//結果返却用の変数
 		User user = new User();
 		//取得したデータを結果返却用の変数にセットしていく

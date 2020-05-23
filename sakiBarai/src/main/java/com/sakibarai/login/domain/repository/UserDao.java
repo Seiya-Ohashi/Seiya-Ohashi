@@ -17,8 +17,11 @@ public interface UserDao {
 	// Userテーブルにデータを1件insert
 	public int insertOne(User user) throws DataAccessException;
 
-	// Userテーブルのデータを1件取得
+	// Userテーブルのデータを1件取得(ログイン後ホーム遷移時のみ使用)
 	public User selectOne(String mailAddress) throws DataAccessException;
+
+	// Userテーブルのデータを1件取得
+	public User selectOneId(int userId) throws DataAccessException;
 
 	// Userテーブルの全データを取得
 	public List<User> selectMany() throws DataAccessException;
