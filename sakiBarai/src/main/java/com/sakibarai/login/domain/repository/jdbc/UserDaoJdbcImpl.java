@@ -54,7 +54,6 @@ public class UserDaoJdbcImpl implements UserDao{
 	@Override
 	public User selectOne(String mailAddress)throws DataAccessException{
 		//1件取得
-		System.out.println("初回jdbc:"+mailAddress);
 		Map<String,Object>map = jdbc.queryForMap("SELECT * FROM `user_info` "
 				+ "WHERE `mail_address` = ?", mailAddress);
 		//結果返却用の変数

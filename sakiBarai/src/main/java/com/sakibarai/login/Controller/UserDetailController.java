@@ -1,6 +1,5 @@
 package com.sakibarai.login.Controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +41,7 @@ public class UserDetailController {
 	//｢更新｣ボタン押下時
 	@PostMapping("/userDetail")
 	public String postUserDetailUpdate(@ModelAttribute SignupForm form,
-			Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+			Model model) {
 		User id = userService.selectOneId((Integer) session.getAttribute("userId"));
 		// Userインスタンスの生成
 		User user = new User();
