@@ -43,11 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			+ " user_info"
 			+ " WHERE"
 			+ " mail_address = ?";
-
+	@Override
 	public void configure(WebSecurity web) throws Exception {
 		//静的リソースを除外
 		//静的リソースへのアクセスには、セキュリティを適用しない
-		web.ignoring().antMatchers("/webjars/∗∗", "/css/∗∗");
+		web.ignoring().antMatchers("/webjars/**", "/css/**");
 	}
 
 	@Override
@@ -56,8 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//ログイン不要ページの設定
 		http
 				.authorizeRequests()
-				.antMatchers("/webjars/∗∗").permitAll()//webjarsへアクセス許可
-				.antMatchers("/css/∗∗").permitAll()//cssへアクセス許可
+				.antMatchers("/webjars/**").permitAll()//webjarsへアクセス許可
+				.antMatchers("/css/**").permitAll()//cssへアクセス許可
 				.antMatchers("/login").permitAll()//ログインページは直リンクOK        
 				.antMatchers("/signup").permitAll()//ユーザー登録画面は直リンクOK        
 				.anyRequest().authenticated();//それ以外は直リンク禁止

@@ -3,29 +3,33 @@
 <head>
 <meta charset="UTF-8"></meta>
 <!-- jQueryとBootstrapのファイルを読み込む -->
-<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet"></link>
 <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 <title>Login</title>
 </head>
-<body class="textcenter">
+<body class="text-center">
 	<h1>ログイン</h1>
 	<form method="post" th:action="@{/login}">
 		<!-- ポイント：ログインエラーメッセージの表示 -->
 		<!-- エラーメッセージ -->
 		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']}!=null"
 			th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
-			class="textdanger">ログインエラーメッセージ
+			class="textdanger">
+			ログインエラーメッセージ
 		</p>
 		<!-- メールアドレス -->
-		<label>メールアドレス</label> <input type="email" name="mailAddress"><br/> <br/>
+		<label>メールアドレス</label>
+		<input type="email" name="mailAddress"><br />
+		<br />
 		<!-- パスワード -->
-		<label>パスワード</label> <input type="password" name="password"><br/> <br/>
+		<label>パスワード</label>
+		<input type="password" name="password"><br />
+		<br />
 		<!-- ログインボタン -->
-		<input type="submit" value=Login>
+		 <button class="btn btn-primary" type="submit">ログイン</button>
 	</form>
-	<br/>
+	<br />
 	<!--  ポイント２：th:href -->
 	<!--  ユーザー登録画面へのリンク -->
 	<a th:href="@{/signup}">ユーザー新規登録はこちら</a>

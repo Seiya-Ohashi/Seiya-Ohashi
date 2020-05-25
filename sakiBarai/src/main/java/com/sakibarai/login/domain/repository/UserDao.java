@@ -7,9 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.sakibarai.login.domain.model.User;
 
 // リポジトリークラスのインターフェースを作成
-// 後で中身の実装クラスを
-// JdbcTemplateとNamedParameterJdbcTemplateで
-// 簡単に切り替えられるようにするため
+
 
 public interface UserDao {
 	// DataAccessException

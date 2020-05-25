@@ -1,12 +1,18 @@
 package com.sakibarai.login.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.sakibarai.login.domain.SignupForm;
+import com.sakibarai.login.domain.model.GroupOrder;
+import com.sakibarai.login.domain.model.SignupForm;
 import com.sakibarai.login.domain.model.User;
 import com.sakibarai.service.UserService;
 
@@ -33,7 +39,7 @@ public class SignupController {
 	// ユーザー登録画面のPOST用コントローラー
 	// (POSTメソッドでHTTPリクエストが来たら)
 	@PostMapping("/signup")
-	public String postSignUp(@ModelAttribute SignupForm form, BindingResult bindingResult) {
+	public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult) {
 		// データバインド結果の受け取り(BindingResult)
 		// ↓データバインド失敗の場合↓
 		// 入力チェックに引っかかった場合、
@@ -44,6 +50,7 @@ public class SignupController {
 			return getSignUp(form);
 		}
 		//---------------------------------------------------------------
+		// @Validated(GroupOrder.class)
 		//insert用変数
 		User user = new User();
 		//ユーザーID
@@ -70,6 +77,38 @@ public class SignupController {
 		//   →LoginControllerのgetLoginメソッドが呼び出される
 		return "redirect:/login";
 	}
+
+    //DataAccessException発生時の処理メソッド
+    @ExceptionHandler(DataAccessException.class)
+    public String dataAccessExceptionHandler(DataAccessException e, Model model) {
+
+        // 例外クラスのメッセージをModelに登録
+        model.addAttribute("error", "内部サーバーエラー（DB）：ExceptionHandler");
+
+        // 例外クラスのメッセージをModelに登録
+        model.addAttribute("message", "SignupControllerでDataAccessExceptionが発生しました");
+
+        // HTTPのエラーコード（500）をModelに登録
+        model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return "error";
+    }
+
+    //Exception発生時の処理メソッド
+    @ExceptionHandler(Exception.class)
+    public String exceptionHandler(Exception e, Model model) {
+
+        // 例外クラスのメッセージをModelに登録
+        model.addAttribute("error", "内部サーバーエラー：ExceptionHandler");
+
+        // 例外クラスのメッセージをModelに登録
+        model.addAttribute("message", "SignupControllerでExceptionが発生しました");
+
+        // HTTPのエラーコード（500）をModelに登録
+        model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return "error";
+    }
 }
 
 // リダイレクトする場合は、メソッドの返却値に
@@ -91,3 +130,11 @@ public class SignupController {
 // デフォルトではクラス名の最初の文字を小文字に変えた文字列が、キー名に登録される
 // 今回の場合でいうと、"signupForm"というキー名で登録されている
 // キー名を変えたい場合は、@ModelAttribute("<キー名>")と、パラメーターを指定する
+//---------------------------------------------------------------
+//･DataAccessException
+//Springでは、データベース操作で例外が発生した場合、
+//Springが提供しているDataAccessExceptionを投げる
+//---------------------------------------------------------------
+//バリデーションを実施するには、引数のフォームクラスに@Validatedアノテーションを付ける
+//また、バリデーションのチェック結果はBindingResultクラスに入っている
+//そのため、バリデーションを使う場合でもBindingResultクラスを引数に設定する必要がある

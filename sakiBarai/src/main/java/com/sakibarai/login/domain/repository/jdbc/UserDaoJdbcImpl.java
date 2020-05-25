@@ -140,7 +140,7 @@ public class UserDaoJdbcImpl implements UserDao{
 	public int updateOne(User user) throws DataAccessException {
 		//パスワード暗号化
 		String password = passwordEncoder.encode(user.getPassword());
-		//1件更新するSQL
+		//TODO 1件更新するSQL
 		String sql = "UPDATE user_info "
 				+"SET "
 				+"user_name=?, "
