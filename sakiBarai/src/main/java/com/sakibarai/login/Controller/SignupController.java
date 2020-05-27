@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.sakibarai.login.domain.model.GroupOrder;
 import com.sakibarai.login.domain.model.SignupForm;
 import com.sakibarai.login.domain.model.User;
 import com.sakibarai.service.UserService;
@@ -61,8 +60,8 @@ public class SignupController {
 		user.setUserName(form.getUserName());
 		// メールアドレス
 		user.setMailAddress(form.getMailAddress());
-		// アカウント判別
-		user.setUserCategoryFlag(form.getUserCategoryFlag());
+		// アカウント権限
+		user.setRole(form.getRole());
 		//ユーザー登録処理
 		boolean result = userService.insert(user);
 		//ユーザー登録結果の判定

@@ -18,6 +18,7 @@ public class HomeController {
 	UserService userService;
 	@Autowired
 	HttpSession session;
+
 	//ホームのGET用メソッド
 	//初回ホーム遷移時、Principalからログイン時に入力したメールアドレスを取得
 	//メールアドレスをもとに、
@@ -32,9 +33,9 @@ public class HomeController {
 			User user = userService.selectOne(principal.getName());//メールアドレスでユーザー名を取得
 			session.setAttribute("userId", user.getUserId());
 			model.addAttribute("name", user.getUserName());//ユーザー名を登録
-		}else{
+		} else {
 			//ホーム2回目以降遷移時
-			User user = userService.selectOneId((Integer)session.getAttribute("userId"));//ユーザーIDでユーザー名を取得
+			User user = userService.selectOneId((Integer) session.getAttribute("userId"));//ユーザーIDでユーザー名を取得
 			model.addAttribute("name", user.getUserName());//ユーザー名を登録
 		}
 		return "login/home";
@@ -46,5 +47,10 @@ public class HomeController {
 		session.invalidate();
 		//ログイン画面にリダイレクト
 		return "redirect:/login";
+	}
+
+	@GetMapping("/admin")
+	public String getAdmin() {
+		return "login/admin";
 	}
 }

@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//データソース
 	@Autowired
 	private DataSource dataSource;
-	//ユーザーIDとパスワードを取得するSQL文
+	//メールアドレスとパスワードを取得するSQL文
 	private static final String USER_SQL = "SELECT"
 			+ " mail_address,"
 			+ " password,"
@@ -35,10 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			+ " user_info"
 			+ " WHERE"
 			+ " mail_address = ?";
-	//ユーザーのflagを取得するSQL文
-	private static final String FLAG_SQL = "SELECT"
+	//ユーザーのroleを取得するSQL文
+	private static final String ROLE_SQL = "SELECT"
 			+ " mail_address,"
-			+ " user_category_flag"
+			+ " role"
 			+ " FROM"
 			+ " user_info"
 			+ " WHERE"
@@ -59,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/webjars/**").permitAll()//webjarsへアクセス許可
 				.antMatchers("/css/**").permitAll()//cssへアクセス許可
 				.antMatchers("/login").permitAll()//ログインページは直リンクOK        
-				.antMatchers("/signup").permitAll()//ユーザー登録画面は直リンクOK        
+				.antMatchers("/signup").permitAll()//ユーザー登録画面は直リンクOK
+				.antMatchers("/admin").hasAuthority("ROLE_ADMIN") //アドミンユーザーに許可     
 				.anyRequest().authenticated();//それ以外は直リンク禁止
 
 		//ログイン処理
@@ -86,7 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication()
 				.dataSource(dataSource)
 				.usersByUsernameQuery(USER_SQL)
-				.authoritiesByUsernameQuery(FLAG_SQL)
+				.authoritiesByUsernameQuery(ROLE_SQL)
 				.passwordEncoder(passwordEncoder());//ログイン時のパスワード復号
 	}
 }

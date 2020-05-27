@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.sakibarai.login.domain.model.SignupForm;
 import com.sakibarai.login.domain.model.User;
+import com.sakibarai.login.domain.model.UserDetailForm;
 import com.sakibarai.service.UserService;
 
 @Controller
@@ -23,7 +23,7 @@ public class UserDetailController {
 	HttpSession session;
 	// ユーザー詳細画面のGET用メソッド
 	@GetMapping("/userDetail")
-	public String getUserDetail(@ModelAttribute SignupForm form,
+	public String getUserDetail(@ModelAttribute UserDetailForm form,
 			Model model) {
 		//System.out.println(session.getAttribute("userId"));
 		//ユーザー情報を取得
@@ -42,12 +42,12 @@ public class UserDetailController {
 	// ユーザー更新用処理
 	//｢更新｣ボタン押下時
 	@PostMapping("/userDetail")
-	public String postUserDetailUpdate(@ModelAttribute @Validated SignupForm form,
+	public String postUserDetailUpdate(@ModelAttribute @Validated UserDetailForm form,
 			BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors() && form.getPassword() != ""){
+		if(bindingResult.hasErrors()){
 			//GETリクエスト用のメソッドを呼び出して、
 			// プロフィール編集画面に戻る
-			System.out.println("aaa");
+			System.out.println(bindingResult);
 			return getUserDetail(form, model);
 		}
 		User id = userService.selectOneId((Integer) session.getAttribute("userId"));
@@ -60,9 +60,13 @@ public class UserDetailController {
 		// 更新実行
 		boolean result = userService.updateOne(user);
 		if (result == true) {
-			model.addAttribute("result", "更新成功");
+			if(user.getPassword() == "") {
+				model.addAttribute("result", "パスワード以外の更新が完了しました");
+			}else {
+				model.addAttribute("result", "更新が完了しました");
+			}
 		} else {
-			model.addAttribute("result", "更新失敗");
+			model.addAttribute("result", "更新に失敗しました");
 		}
 		//ユーザー一覧画面を表示
 		return "user/userDetail";

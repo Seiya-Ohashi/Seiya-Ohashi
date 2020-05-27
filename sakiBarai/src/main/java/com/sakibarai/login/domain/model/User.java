@@ -16,5 +16,5 @@ public class User{
 	//パスワード
 	private String password;
 	//アカウントカテゴリー
-	private int userCategoryFlag;
+	private String role;
 }

@@ -14,7 +14,7 @@
 					<h1>プロフィール編集</h1>
 				</div>
 				<form method="post" th:action="@{/userDetail}"
-					th:object="${signupForm}">
+					th:object="${userDetailForm}">
 					<table class="table table-bordered table-hover">
 						<tr>
 							<!-- ユーザー名 -->
@@ -43,12 +43,12 @@
 									th:classappend="${#fields.hasErrors('mailAddress')}?'has-error'">
 									<input type="text" class="form-control"
 										th:field="*{mailAddress}" />
-									<!-- 個別エラーメッセージの表示 -->
-									<span class="text-danger"
-										th:if="${#fields.hasErrors('mailAddress')}"
-										th:errors="*{mailAddress}">
-										mailAddress error
-									</span>
+										<!-- 個別エラーメッセージの表示 -->
+										<span class="text-danger"
+											th:if="${#fields.hasErrors('mailAddress')}"
+											th:errors="*{mailAddress}">
+											mailAddress error
+										</span>
 								</div>
 							</td>
 						</tr>

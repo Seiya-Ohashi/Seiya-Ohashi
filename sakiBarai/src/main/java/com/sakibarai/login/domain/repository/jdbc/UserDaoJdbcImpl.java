@@ -88,10 +88,9 @@ public class UserDaoJdbcImpl implements UserDao{
 	// 第1引数にSQL文、第2引数以降にPreparedStatementを指定
 	// 戻り値のMapのgetメソッドにカラム名を指定することで、値を取得
 	// 複数件取得する場合と、使い方はほとんど一緒
-	// 次→ユーザーサービスクラスに1件取得用のメソッドを追加(②)
 	//---------------------------------------------------------------
 
-//a TODO Userテーブルの全データを取得するメソッド(※店一覧取得に流用)
+//a TODO Userテーブルの全データを取得するメソッド
 	@Override
 	public List<User>selectMany()throws DataAccessException{
 		return null;
@@ -116,8 +115,8 @@ public class UserDaoJdbcImpl implements UserDao{
 //a		user.setMailAddress((String)map.get("mail_address"));
 //a		//パスワード
 //a		user.setPassword((String)map.get("password"));
-//a		//アカウントカテゴリー
-//a		user.setUserCategoryFlag((Integer)map.get("user_category_flag"));
+//a		//アカウント権限
+//a		user.setRole((String)map.get("role"));
 //a		//結果返却用のListに追加
 //a		userList.add(user);
 //a	}
@@ -138,22 +137,39 @@ public class UserDaoJdbcImpl implements UserDao{
 	//Userテーブルを1件更新するメソッド(プロフィール編集に使う)
 	@Override
 	public int updateOne(User user) throws DataAccessException {
-		//パスワード暗号化
-		String password = passwordEncoder.encode(user.getPassword());
-		//TODO 1件更新するSQL
-		String sql = "UPDATE user_info "
-				+"SET "
-				+"user_name=?, "
-				+"mail_address=?, "
-				+"password=? "
-				+"WHERE user_id=?";
-		//1件更新
-		int rowNumber = jdbc.update(sql
-		,user.getUserName()
-		,user.getMailAddress()
-		,password
-		,user.getUserId());
-		return rowNumber;
+		if(user.getPassword() == "") {
+			//1件更新するSQL(パスワードは更新しない場合)
+			String sql = "UPDATE user_info "
+					+"SET "
+					+"user_name=?, "
+					+"mail_address=? "
+					+"WHERE user_id=?";
+			//1件更新
+			int rowNumber = jdbc.update(sql
+			,user.getUserName()
+			,user.getMailAddress()
+			,user.getUserId());
+			System.out.println("パスワード以外を更新");
+			return rowNumber;
+		} else {
+			//パスワード暗号化
+			String password = passwordEncoder.encode(user.getPassword());
+			//1件更新するSQL(パスワードも更新する場合)
+			String sql = "UPDATE user_info "
+					+"SET "
+					+"user_name=?, "
+					+"mail_address=?, "
+					+"password=? "
+					+"WHERE user_id=?";
+			//1件更新
+			int rowNumber = jdbc.update(sql
+			,user.getUserName()
+			,user.getMailAddress()
+			,password
+			,user.getUserId());
+			System.out.println("パスワードも更新");
+			return rowNumber;
+		}
 	}
 }
 
