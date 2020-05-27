@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<meta charset="UTF-8"></meta>
+<meta charset="UTF-8"></meta>
 </head>
-	<body>
-			<h1>ホーム</h1>
-			<p>ようこそ<span th:text="${name}"></span>さん</p>
-			<a th:href="@{/userDetail}">プロフィールはこちら</a>
-			<a th:href="@{/logout}">ログアウト</a>
-	</body>
+<body>
+	<h1>ホーム</h1>
+	<p>
+		ようこそ<span th:text="${name}"></span>さん
+	</p>
+	<a th:href="@{/userDetail}">プロフィールはこちら</a>
+	<a th:href="@{/logout}">ログアウト</a>
+	<!-- 画面表示の認可 -->
+	<div role="presentation" sec:authorize="hasRole('ADMIN')">
+		<a th:href="@{'/admin'}">アドミン用画面</a>
+	</div>
+</body>
 </html>
