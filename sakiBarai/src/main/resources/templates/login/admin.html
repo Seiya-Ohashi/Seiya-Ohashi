@@ -5,10 +5,10 @@
 </head>
 <body>
 	<h1>アドミンホーム</h1>
-	<p>
-		ようこそ<span th:text="${name}"></span>さん
-	</p>
-	<a th:href="@{/userDetail}">プロフィールはこちら</a>
-	<a th:href="@{/logout}">ログアウト</a>
+	<p>ようこそ<span th:text="${name}"></span>さん</p>
+	<a th:href="@{'/userDetail/' + ${session.userId}}">プロフィールはこちら</a>
+	<a th:href="@{/userList}">ユーザー一覧はこちら</a>
+	<a th:href="@{/logout}">ログアウト</a><br>
+	<a th:href="@{/home}">ホームへ戻る</a>
 </body>
 </html>

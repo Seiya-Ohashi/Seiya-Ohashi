@@ -26,7 +26,6 @@ public class HomeController {
 	//2回目以降のホーム遷移時は、ユーザーIDでユーザー名を取得して表示
 	@GetMapping("/home")
 	public String getHome(Model model, Principal principal) {
-		System.out.println("ユーザーID" + session.getAttribute("userId"));//確認用
 		//ホーム初回遷移時
 		//(sessionに｢ユーザーID｣を入れる、model(name)に｢ユーザー名｣を入れる)
 		if (session.getAttribute("userId") == null) {
@@ -38,19 +37,15 @@ public class HomeController {
 			User user = userService.selectOneId((Integer) session.getAttribute("userId"));//ユーザーIDでユーザー名を取得
 			model.addAttribute("name", user.getUserName());//ユーザー名を登録
 		}
+		System.out.println("ホーム遷移時ユーザーID→" + session.getAttribute("userId"));//確認用
 		return "login/home";
 	}
 
 	//ログアウト用メソッド
 	@GetMapping("/logout")
-	public String postLogout() {
+	public String getLogout() {
 		session.invalidate();
 		//ログイン画面にリダイレクト
 		return "redirect:/login";
-	}
-
-	@GetMapping("/admin")
-	public String getAdmin() {
-		return "login/admin";
 	}
 }

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 // http://localhost:8080/login
 // 上記URLに GETメソッド、POSTメソッドでHTTPリクエストが来たら、
-// ｢login｣フォルダー配下の｢login.html｣、｢home.html｣を表示する
+// ｢login｣フォルダー配下の｢login.html｣を表示する
 
 @Controller
 public class LoginController{

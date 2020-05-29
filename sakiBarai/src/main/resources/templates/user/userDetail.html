@@ -1,5 +1,6 @@
 <!DOCTYPEhtml>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8"></meta>
 <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet"></link>
@@ -9,11 +10,11 @@
 <body>
 	<div>
 		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-md-6">
 				<div class="page-header">
 					<h1>プロフィール編集</h1>
 				</div>
-				<form method="post" th:action="@{/userDetail}"
+				<form method="post" th:action="@{'/userDetail/' + ${userId}}"
 					th:object="${userDetailForm}">
 					<table class="table table-bordered table-hover">
 						<tr>
@@ -54,7 +55,6 @@
 						</tr>
 						<tr>
 							<!-- パスワード -->
-							<!-- エラー用CSSの追加 -->
 							<th class="active">パスワード</th>
                             <td>
                              <div class="form-group"
@@ -72,11 +72,16 @@
 						</tr>
 					</table>
 					<!-- 更新ボタン -->
-					<button class="btn btn-primary btn-lg pull-right" type="submit"
-						name="update">更新</button>
-					<!-- 戻るボタン -->
-					<button class="btn btn-danger btn-lg" type="button"
-						 onclick="location.href='./home'">戻る</button>
+					<button class="btn btn-primary btn ml-1 space" type="submit"
+						name="update">更新</button><br>
+					<!-- ホームへ戻るボタン -->
+					<p><p><button class="btn btn-secondary btn ml-1 space" type="button"
+						 onclick="location.href='../home'">ホームへ戻る</button></p></p>
+					 <!--  ユーザー一覧へ戻るボタン -->
+					<p><div role="presentation" sec:authorize="hasRole('ADMIN')">
+					<button class="btn btn-secondary ml-1 space" type="button"
+						 onclick="location.href='/userList'">ユーザー一覧へ戻る</button></p>
+					</div>
 					<p><span th:text="${result}"></span></p>
 				</form>
 			</div>

@@ -26,6 +26,9 @@ public interface UserDao {
 
 	// Userテーブルを1件更新
 	public int updateOne(User user) throws DataAccessException;
+
+	// Userテーブルのデータを1件削除
+	public int deleteOne(int userId) throws DataAccessException;
 }
 //Springでは、データベース操作で例外が発生した場合、
 //Springが提供しているDataAccessExceptionを投げる

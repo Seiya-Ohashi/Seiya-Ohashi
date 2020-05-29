@@ -1,5 +1,6 @@
 package com.sakibarai.login.domain.repository.jdbc;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -90,39 +91,35 @@ public class UserDaoJdbcImpl implements UserDao{
 	// 複数件取得する場合と、使い方はほとんど一緒
 	//---------------------------------------------------------------
 
-//a TODO Userテーブルの全データを取得するメソッド
+	//Userテーブルの全データを取得するメソッド
 	@Override
 	public List<User>selectMany()throws DataAccessException{
-		return null;
+		//複数件のselect
+		//user_infoテーブルのデータを全件取得
+		List<Map<String,Object>>getList = jdbc.queryForList("SELECT * "
+		+ "FROM user_info");
+		//結果返却用の変数
+		List<User>userList = new ArrayList<>();
+		//取得したデータを結果返却用のListに格納していく
+		for(Map<String,Object>map:getList){
+		//Userインスタンスの生成
+		User user = new User();
+		//Userインスタンスに取得したデータをセットする
+		//ユーザーID
+		user.setUserId((Integer)map.get("user_id"));
+		//ユーザー名
+		user.setUserName((String)map.get("user_name"));
+		//メールアドレス
+		user.setMailAddress((String)map.get("mail_address"));
+		//パスワード
+		//user.setPassword((String)map.get("password"));
+		//アカウント権限
+		user.setRole((String)map.get("role"));
+		//結果返却用のListに追加
+		userList.add(user);
 	}
-//a	public List<User>selectMany()throws DataAccessException{
-//a		//複数件のselect
-//a		//info_userテーブルのデータを全件取得
-//a		List<Map<String,Object>>getList = jdbc.queryForList("SELECT * "
-//a		+ "FROM user_info");
-//a		//結果返却用の変数
-//a		List<User>userList = new ArrayList<>();
-//a		//取得したデータを結果返却用のListに格納していく
-//a		for(Map<String,Object>map:getList){
-//a		//Userインスタンスの生成
-//a		User user = new User();
-//a		//Userインスタンスに取得したデータをセットする
-//a		//ユーザーID
-//a		user.setUserId((String)map.get("user_id"));
-//a		//ユーザー名
-//a		user.setUserName((String)map.get("user_name"));
-//a		//メールアドレス
-//a		user.setMailAddress((String)map.get("mail_address"));
-//a		//パスワード
-//a		user.setPassword((String)map.get("password"));
-//a		//アカウント権限
-//a		user.setRole((String)map.get("role"));
-//a		//結果返却用のListに追加
-//a		userList.add(user);
-//a	}
-//a	return userList;
-//a }
-
+	return userList;
+}
 	// ･複数件のselect
 	// 複数件のselectをする場合は、queryForListメソッドを使う
 	// 戻り値の型にはList<Map<String,Object>>を指定する
@@ -171,6 +168,15 @@ public class UserDaoJdbcImpl implements UserDao{
 			return rowNumber;
 		}
 	}
+    // Userテーブルを1件削除
+    @Override
+    public int deleteOne(int userId) throws DataAccessException {
+
+        //1件削除
+        int rowNumber = jdbc.update("DELETE FROM user_info WHERE user_id = ?", userId);
+
+        return rowNumber;
+    }
 }
 
 // JdbcTemplateクラスを使って登録（insert）するには、updateメソッドを使う
