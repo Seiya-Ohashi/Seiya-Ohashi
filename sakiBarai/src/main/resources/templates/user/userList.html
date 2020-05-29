@@ -17,9 +17,9 @@
 				<th class="info col-xs-2">ユーザID</th>
 				<th class="info col-xs-2">ユーザ名</th>
 				<th class="info col-xs-2">メールアドレス</th>
-				<th class="info col-xs-2">パスワード</th>
 				<th class="info col-xs-2">権限</th>
-				<th class="info col-xs-2"></th>
+				<th class="info col-xs-2">ユーザー詳細</th>
+				<th class="info col-xs-2">ユーザー削除</th>
 			</tr>
 			<tr th:each="user : ${userList}">
 				<td th:text="${user.userId}"></td>
@@ -32,9 +32,9 @@
 					th:href="@{'/userDetail/' + ${user.userId}}"> 詳細 </a>
 				</td>
 				<td>
-					<form method="get" th:action="@{'/userList/' + ${user.userId}}">
-					<a class="btn btn-danger"
-					th:href="@{'/userList/' + ${user.userId}}"> 削除 </a>
+					<form method="post" th:action="@{'/userList'}">
+					<button type="submit" class="btn btn-danger"
+						name="id" th:value="${user.userId}"> 削除 </button>
 					</form>
 				</td>
 			</tr>

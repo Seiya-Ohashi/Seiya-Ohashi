@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sakibarai.login.domain.model.User;
 import com.sakibarai.service.UserService;
@@ -27,8 +28,8 @@ public class UserListController {
 	}
 
 
-	@GetMapping("/userList/{id}")
-	public String gettUserDelete(@PathVariable("id")int userId, Model model) {
+	@PostMapping("/userList")
+	public String postUserDelete(@RequestParam("id")int userId, Model model) {
 		userService.selectOneId(userId);
 		// 削除実行
 		boolean result = userService.deleteOne(userId);
