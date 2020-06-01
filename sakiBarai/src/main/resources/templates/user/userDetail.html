@@ -32,6 +32,7 @@
                                         th:errors="*{userName}">
                                         userName error
                                     </span>
+                                    <span class="text-danger" th:text="${nameExists}"></span>
                                 </div>
 							</td>
 						</tr>
@@ -50,6 +51,7 @@
 											th:errors="*{mailAddress}">
 											mailAddress error
 										</span>
+										<span class="text-danger" th:text="${mailExists}"></span>
 								</div>
 							</td>
 						</tr>

@@ -31,14 +31,44 @@ public class UserDaoJdbcImpl implements UserDao{
 	// queryForObjectメソッドを使う
 	// 第1引数にSQL文、第2引数に戻り値のオブジェクトのclassを指定
 	//---------------------------------------------------------------
+	//		Map<String,Object>map = jdbc.queryForMap("SELECT `user_name` FROM `user_info` "
+	//+ "WHERE `user_name` = ?", userName);
+
+	@Override
+	public boolean selectDuplicationName(String userName)throws DataAccessException{
+		//1件取得
+		int countName = jdbc.queryForObject("SELECT COUNT(*) FROM `user_info` "
+				+ "WHERE `user_name` = ?", new Object[]{new String(userName)}, Integer.class);
+		boolean nameExists;
+		if(countName == 1){
+			nameExists = true;
+		}else{
+			nameExists = false;
+		}
+		return nameExists;
+	}
+
+	@Override
+	public boolean selectDuplicationMail(String mailAddress)throws DataAccessException{
+		//1件取得
+		int countMail = jdbc.queryForObject("SELECT COUNT(*) FROM `user_info` "
+				+ "WHERE `mail_address` = ?", new Object[]{new String(mailAddress)}, Integer.class);
+		boolean mailExists;
+		if(countMail == 1){
+			mailExists = true;
+		}else{
+			mailExists = false;
+		}
+		return mailExists;
+	}
 
 	//Userテーブルにデータを1件insertするメソッド(ユーザー新規登録に使う)
 	@Override
 	public int insertOne(User user)throws DataAccessException{
 		//パスワード暗号化
-		String password=passwordEncoder.encode(user.getPassword());
+		String password = passwordEncoder.encode(user.getPassword());
 		//ユーザーテーブルに1件登録するSQL
-		String sql="INSERT INTO "
+		String sql = "INSERT INTO "
 				+"user_info(user_name,"
 				+"mail_address,"
 				+"password)"
@@ -138,9 +168,9 @@ public class UserDaoJdbcImpl implements UserDao{
 			//1件更新するSQL(パスワードは更新しない場合)
 			String sql = "UPDATE user_info "
 					+"SET "
-					+"user_name=?, "
-					+"mail_address=? "
-					+"WHERE user_id=?";
+					+"user_name = ?, "
+					+"mail_address = ? "
+					+"WHERE user_id = ?";
 			//1件更新
 			int rowNumber = jdbc.update(sql
 			,user.getUserName()
@@ -154,10 +184,10 @@ public class UserDaoJdbcImpl implements UserDao{
 			//1件更新するSQL(パスワードも更新する場合)
 			String sql = "UPDATE user_info "
 					+"SET "
-					+"user_name=?, "
-					+"mail_address=?, "
-					+"password=? "
-					+"WHERE user_id=?";
+					+"user_name = ?, "
+					+"mail_address = ?, "
+					+"password = ? "
+					+"WHERE user_id = ?";
 			//1件更新
 			int rowNumber = jdbc.update(sql
 			,user.getUserName()

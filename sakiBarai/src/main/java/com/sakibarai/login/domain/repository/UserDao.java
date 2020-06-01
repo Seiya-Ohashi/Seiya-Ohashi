@@ -8,9 +8,13 @@ import com.sakibarai.login.domain.model.User;
 
 // リポジトリークラスのインターフェースを作成
 
-
 public interface UserDao {
-	// DataAccessException
+
+	// ユーザー名の重複チェック
+	public boolean selectDuplicationName(String userName) throws DataAccessException;
+
+	// メールアドレスの重複チェック
+	public boolean selectDuplicationMail(String mailAddress)throws DataAccessException;
 
 	// Userテーブルにデータを1件insert
 	public int insertOne(User user) throws DataAccessException;
@@ -29,6 +33,7 @@ public interface UserDao {
 
 	// Userテーブルのデータを1件削除
 	public int deleteOne(int userId) throws DataAccessException;
+
 }
 //Springでは、データベース操作で例外が発生した場合、
 //Springが提供しているDataAccessExceptionを投げる

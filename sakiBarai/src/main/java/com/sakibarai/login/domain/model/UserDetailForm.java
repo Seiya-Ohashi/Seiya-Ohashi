@@ -19,19 +19,18 @@ public class UserDetailForm {
 	//ユーザーID
 	private int userId;
 
-	@NotBlank//(groups = ValidGroup1.class)//未記入チェック
-	@Length(min = 1, max = 32)//, groups = ValidGroup2.class)//文字数
+	@NotBlank//未記入チェック
+	@Length(min = 1, max = 32)//文字数
 	//ユーザー名
 	private String userName;
 
-	@NotBlank//(groups = ValidGroup1.class)//未記入チェック
-	@Email//(groups = ValidGroup2.class)//メールアドレスかどうか
+	@NotBlank//未記入チェック
+	@Email//メールアドレスかどうか
 	private String mailAddress;
 
-	@NotNull//(groups = ValidGroup1.class)//未記入チェック
-	@Length(min = 0, max = 16)//, groups = ValidGroup2.class)//文字数
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
-	//@Pattern(regexp = "^[a-zA-Z0-9]+$")//, groups = ValidGroup3.class)//英数字のみ
+	@NotNull//未記入チェック
+	@Length(min = 0, max = 16)//文字数
+	@Pattern(regexp = "^[a-zA-Z0-9]*$")//英数字のみ
 	//パスワード
 	private String password;
 

@@ -38,7 +38,8 @@ public class SignupController {
 	// ユーザー登録画面のPOST用コントローラー
 	// (POSTメソッドでHTTPリクエストが来たら)
 	@PostMapping("/signup")
-	public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult) {
+	public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult,
+			Model model) {
 		// データバインド結果の受け取り(BindingResult)
 		// ↓データバインド失敗の場合↓
 		// 入力チェックに引っかかった場合、
@@ -49,7 +50,6 @@ public class SignupController {
 			return getSignUp(form);
 		}
 		//---------------------------------------------------------------
-		// @Validated(GroupOrder.class)
 		//insert用変数
 		User user = new User();
 		//ユーザーID
@@ -62,13 +62,28 @@ public class SignupController {
 		user.setMailAddress(form.getMailAddress());
 		// アカウント権限
 		user.setRole(form.getRole());
-		//ユーザー登録処理
-		boolean result = userService.insert(user);
-		//ユーザー登録結果の判定
-		if(result == true){
-			System.out.println("insert成功");
+		//重複チェック
+		boolean nameExists = userService.selectDuplicationName(user.getUserName());
+		boolean mailExists = userService.selectDuplicationMail(user.getMailAddress());
+		if(nameExists == true && mailExists == true){
+			model.addAttribute("nameExists", "ユーザー名が重複しています");
+			model.addAttribute("mailExists", "メールアドレスが重複しています");
+			return getSignUp(form);
+		}else if(nameExists == true){
+			model.addAttribute("nameExists", "ユーザー名が重複しています");
+			return getSignUp(form);
+		}else if(mailExists == true){
+			model.addAttribute("mailExists", "メールアドレスが重複しています");
+			return getSignUp(form);
 		}else{
-			System.out.println("insert失敗");
+			//ユーザー登録処理
+			boolean result = userService.insert(user);
+			//ユーザー登録結果の判定
+			if(result == true){
+				System.out.println("insert成功");
+			}else{
+				System.out.println("insert失敗");
+			}
 		}
 		//---------------------------------------------------------------
 		// login.htmlにリダイレクト
