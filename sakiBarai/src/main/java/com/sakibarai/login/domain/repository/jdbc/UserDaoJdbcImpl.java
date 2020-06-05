@@ -38,7 +38,7 @@ public class UserDaoJdbcImpl implements UserDao{
 	public boolean selectDuplicationName(String userName)throws DataAccessException{
 		//1件取得
 		int countName = jdbc.queryForObject("SELECT COUNT(*) FROM `user_info` "
-				+ "WHERE `user_name` = ?", new Object[]{new String(userName)}, Integer.class);
+				+ "WHERE `user_name` = ?", Integer.class, userName);
 		boolean nameExists;
 		if(countName == 1){
 			nameExists = true;
@@ -52,7 +52,7 @@ public class UserDaoJdbcImpl implements UserDao{
 	public boolean selectDuplicationMail(String mailAddress)throws DataAccessException{
 		//1件取得
 		int countMail = jdbc.queryForObject("SELECT COUNT(*) FROM `user_info` "
-				+ "WHERE `mail_address` = ?", new Object[]{new String(mailAddress)}, Integer.class);
+				+ "WHERE `mail_address` = ?", Integer.class, mailAddress);
 		boolean mailExists;
 		if(countMail == 1){
 			mailExists = true;

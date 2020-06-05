@@ -5,7 +5,6 @@
 <!-- Bootstrapの設定 -->
 <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
 	rel="stylesheet"></link>
-<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 <title>SignUp</title>
 </head>
@@ -36,6 +35,7 @@
 								th:errors="*{userName}">
 								userName error
 							</span>
+							<span class="text-danger" th:text="${nameExists}"></span>
 						</div>
 					</td>
 				</tr>
@@ -54,6 +54,7 @@
                                 th:errors="*{mailAddress}">
                                 mailAddress error
                             </span>
+                            <span class="text-danger" th:text="${mailExists}"></span>
 						</div>
 					</td>
 				</tr>
@@ -88,5 +89,6 @@
 				onclick="location.href='./login'">戻る</button>
 		</form>
 	</div>
+	<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 </body>
 </html>
