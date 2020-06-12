@@ -24,9 +24,9 @@ public class UserListController {
 	List<User> userList =  userService.selectMany();
 	//Modelにユーザーリストを登録
 	model.addAttribute("userList",userList);
-	return "user/userList";
+	model.addAttribute("adminContents", "user/userList :: userList_contents");
+	return "login/adminHomeLayout";
 	}
-
 
 	@PostMapping("/userList")
 	public String postUserDelete(@RequestParam("id")int userId, Model model) {

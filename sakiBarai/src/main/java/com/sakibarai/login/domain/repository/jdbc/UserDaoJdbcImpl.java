@@ -31,14 +31,14 @@ public class UserDaoJdbcImpl implements UserDao{
 	// queryForObjectメソッドを使う
 	// 第1引数にSQL文、第2引数に戻り値のオブジェクトのclassを指定
 	//---------------------------------------------------------------
-	//		Map<String,Object>map = jdbc.queryForMap("SELECT `user_name` FROM `user_info` "
-	//+ "WHERE `user_name` = ?", userName);
+	//		Map<String,Object>map = jdbc.queryForMap("SELECT user_name FROM user_info "
+	//+ "WHERE user_name = ?", userName);
 
 	@Override
 	public boolean selectDuplicationName(String userName)throws DataAccessException{
 		//1件取得
-		int countName = jdbc.queryForObject("SELECT COUNT(*) FROM `user_info` "
-				+ "WHERE `user_name` = ?", Integer.class, userName);
+		int countName = jdbc.queryForObject("SELECT COUNT(*) FROM user_info "
+				+ "WHERE user_name = ?", Integer.class, userName);
 		boolean nameExists;
 		if(countName == 1){
 			nameExists = true;
@@ -51,8 +51,8 @@ public class UserDaoJdbcImpl implements UserDao{
 	@Override
 	public boolean selectDuplicationMail(String mailAddress)throws DataAccessException{
 		//1件取得
-		int countMail = jdbc.queryForObject("SELECT COUNT(*) FROM `user_info` "
-				+ "WHERE `mail_address` = ?", Integer.class, mailAddress);
+		int countMail = jdbc.queryForObject("SELECT COUNT(*) FROM user_info "
+				+ "WHERE mail_address = ?", Integer.class, mailAddress);
 		boolean mailExists;
 		if(countMail == 1){
 			mailExists = true;
@@ -85,24 +85,22 @@ public class UserDaoJdbcImpl implements UserDao{
 	@Override
 	public User selectOne(String mailAddress)throws DataAccessException{
 		//1件取得
-		Map<String,Object>map = jdbc.queryForMap("SELECT * FROM `user_info` "
-				+ "WHERE `mail_address` = ?", mailAddress);
+		Map<String,Object>map = jdbc.queryForMap("SELECT user_id, user_name, role FROM user_info "
+				+ "WHERE mail_address = ?", mailAddress);
 		//結果返却用の変数
 		User user = new User();
 		//取得したデータを結果返却用の変数にセットしていく
 		user.setUserId((Integer)map.get("user_id"));// ユーザーID
-		user.setUserName((String)map.get("user_name"));// ユーザー名
-		user.setMailAddress((String)map.get("mail_address"));// メールアドレス
-		user.setPassword((String)map.get("password"));// パスワード
-
+		user.setUserName((String)map.get("user_name"));// ユーザーID
+		user.setRole((String)map.get("role"));// ユーザー名
 		return user;
 	}
 	//Userテーブルのデータを1件取得だけ取得するメソッド
 	@Override
 	public User selectOneId(int userId)throws DataAccessException{
 		//1件取得
-		Map<String,Object>map = jdbc.queryForMap("SELECT * FROM `user_info` "
-				+ "WHERE `user_id` = ?", userId);
+		Map<String,Object>map = jdbc.queryForMap("SELECT * FROM user_info "
+				+ "WHERE user_id = ?", userId);
 		//結果返却用の変数
 		User user = new User();
 		//取得したデータを結果返却用の変数にセットしていく

@@ -8,10 +8,11 @@
 	<h1>ホーム</h1>
 	<p>ようこそ<span th:text="${name}"></span>さん</p>
 	<a th:href="@{'/userDetail/' + ${session.userId}}">プロフィールはこちら</a>
+	<a th:href="@{/storeList}">店舗一覧はこちら</a>
 	<a th:href="@{/logout}">ログアウト</a>
 	<!-- 画面表示の認可 -->
 	<div role="presentation" sec:authorize="hasRole('ADMIN')">
-		<a th:href="@{'/admin'}">admin用画面(adminにしか表示されない･直リンも出来ない)</a>
+		<a th:href="@{'/adminHomeLayout'}">admin用画面(adminにしか表示されない･直リンも出来ない)</a>
 	</div>
 </body>
 </html>

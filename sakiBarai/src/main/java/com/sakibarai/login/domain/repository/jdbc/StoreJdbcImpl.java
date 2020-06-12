@@ -83,4 +83,49 @@ public class StoreJdbcImpl implements StoreDao{
 		}
 		return storeList;
 	}
+
+	// store_infoテーブルのデータの件数を取得
+	@Override
+	public int storeCount() throws DataAccessException{
+		// SQL文
+		String sql = "SELECT COUNT(*) FROM store_info";
+		//パラメーター生成
+		SqlParameterSource params = new MapSqlParameterSource();
+		//全件取得してカウント
+		return jdbc.queryForObject(sql,params,Integer.class);
+	}
+
+	// store_infoテーブルのデータを複数件取得
+	@Override
+	public List<Store> selectManyStoreLimit(int dataNum, int limitNum) throws DataAccessException{
+		// 複数件のselect
+		String sql = "SELECT * FROM store_info LIMIT :dataNum, :limitNum";
+		SqlParameterSource params = new MapSqlParameterSource()
+			.addValue("dataNum", dataNum)
+			.addValue("limitNum", limitNum);
+		// SQL実行
+		List<Map<String,Object>> getList = jdbc.queryForList(sql, params);
+		// 結果返却用のList
+		List<Store>storeList = new ArrayList<>();
+		// 取得したデータを結果返却用のListに格納していく
+		for(Map<String,Object>map:getList){
+		// Storeインスタンスの生成
+		Store store = new Store();
+		// storeインスタンスに取得したデータをセットする
+		store.setStoreId((Integer)map.get("store_id"));//店舗ID
+		store.setStoreUserId((Integer)map.get("store_user_id"));//店舗ユーザーID
+		store.setStoreName((String)map.get("store_name"));//店舗名
+		store.setAddress1((String)map.get("address1"));//住所1
+		store.setAddress2((String)map.get("address2"));//住所2
+		store.setAddress3((String)map.get("address3"));//住所3
+		store.setAddress4((String)map.get("address4"));//住所4
+		store.setBusinessHours((String)map.get("business_hours"));//営業時間
+		store.setRegularHoliday((String)map.get("regular_holiday"));//定休日
+		store.setStorePhoneNumber((String)map.get("store_phone_number"));//電話番号
+		store.setWebpage((String)map.get("wabpage"));//Webページ
+		//結果返却用のListに追加
+		storeList.add(store);
+		}
+		return storeList;
+	}
 }

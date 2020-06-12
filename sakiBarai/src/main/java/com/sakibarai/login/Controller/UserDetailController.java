@@ -1,5 +1,7 @@
 package com.sakibarai.login.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import com.sakibarai.service.UserService;
 public class UserDetailController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	HttpSession session;
 
 	String saveName;//DB内の名前を保存(重複確認用)
 	String saveMail;//DB内のメールアドレスを保存(重複確認用)
@@ -36,14 +40,20 @@ public class UserDetailController {
 
 			model.addAttribute("userId", userId);
 			model.addAttribute("signupForm", form);
+			model.addAttribute("adminContents", "user/userDetail :: userDetail_contents");
 			saveName = user.getUserName();
 			saveMail = user.getMailAddress();
 
-		}else {
+		}else{
 			model.addAttribute("userId", userId);
 			model.addAttribute("signupForm", form);
+			model.addAttribute("adminContents", "user/userDetail :: userDetail_contents");
 		}
+		if(session.getAttribute("role").equals("ROLE_ADMIN")) {
+			return "login/adminHomeLayout";
+		}else{
 		return "user/userDetail";
+		}
 	}
 
 	// ボタン名によるメソッド判定
@@ -88,13 +98,13 @@ public class UserDetailController {
 			// 更新実行
 			boolean result = userService.updateOne(user);
 			// パスワード欄未入力→パスワード以外更新 入力済→すべて更新
-			if (result == true) {
-				if(user.getPassword() == "") {
+			if (result == true){
+				if(user.getPassword() == ""){
 					model.addAttribute("result", "パスワード以外の更新が完了しました");
-				}else {
+				}else{
 					model.addAttribute("result", "更新が完了しました");
 				}
-			} else {
+			}else{
 				model.addAttribute("result", "更新に失敗しました");
 			}
 		}

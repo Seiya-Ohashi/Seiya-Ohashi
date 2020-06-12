@@ -8,7 +8,7 @@
 <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<div>
+	<div th:fragment="userDetail_contents">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="page-header">
@@ -78,11 +78,11 @@
 						name="update">更新</button><br>
 					<!-- ホームへ戻るボタン -->
 					<p><p><button class="btn btn-secondary btn ml-1 space" type="button"
-						 onclick="location.href='../home'">ホームへ戻る</button></p></p>
+						 onclick="location.href='../home'">ホームへ戻る</button></p>
 					 <!--  ユーザー一覧へ戻るボタン -->
 					<p><div role="presentation" sec:authorize="hasRole('ADMIN')">
 					<button class="btn btn-secondary ml-1 space" type="button"
-						 onclick="location.href='/userList'">ユーザー一覧へ戻る</button></p>
+						 onclick="location.href='/userList'">ユーザー一覧へ戻る</button>
 					</div>
 					<p><span th:text="${result}"></span></p>
 				</form>

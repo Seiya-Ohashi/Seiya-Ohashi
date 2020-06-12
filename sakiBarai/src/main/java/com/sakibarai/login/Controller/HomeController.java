@@ -31,13 +31,15 @@ public class HomeController {
 		if (session.getAttribute("userId") == null) {
 			User user = userService.selectOne(principal.getName());//メールアドレスでユーザー名を取得
 			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("role", user.getRole());
 			model.addAttribute("name", user.getUserName());//ユーザー名を登録
 		} else {
 			//ホーム2回目以降遷移時
 			User user = userService.selectOneId((Integer) session.getAttribute("userId"));//ユーザーIDでユーザー名を取得
 			model.addAttribute("name", user.getUserName());//ユーザー名を登録
 		}
-		System.out.println("ホーム遷移時ユーザーID→" + session.getAttribute("userId"));//確認用
+		//System.out.println("ホーム遷移時ユーザーID→" + session.getAttribute("userId"));//確認用
+
 		return "login/home";
 	}
 

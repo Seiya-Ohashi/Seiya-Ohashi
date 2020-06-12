@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
@@ -32,12 +32,67 @@
 				</td>
 			</tr>
 		</table>
+		<!-- ページ送り用 -->
+		<form action="post" th:action="@{'/storeList'}">
+			<nav aria-label="...">
+			  <ul class="pagination">
+				<!-- 1ページ目の時は｢前へ｣ボタン無効化、2ページ目以降は表示 -->
+			    <li th:if="${pagePrev} eq 0" class="page-item disabled">
+			   	 <a class="page-link">前へ</a>
+			   	</li>
+			   	<li th:if="${pagePrev} eq 1" class="page-item">
+			   	 <a class="page-link" th:href="@{'/storeList'}">前へ</a>
+			   	</li>
+			    <li th:if="${pagePrev} gt 1" class="page-item">
+			   	 <a class="page-link" th:href="@{'/storeList/' + ${pagePrev}}">前へ</a>
+			   	</li>
+				<!-- StoreListControllerの配列、pageArrayに応じて変動 -->
+				<!-- <li th:if="${pageCurrent} eq 1" class="page-item active">
+			   	 <a class="page-link" th:href="@{'/storeList'}">1</a>
+			   	</li>
+				<li th:if="${pageCurrent} neq 1" class="page-item">
+			   	 <a class="page-link" th:href="@{'/storeList'}">1</a>
+			   	</li>
+				<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item active"
+					th:if="${arrayStat.count} neq 1 and ${pageCurrent} eq ${arrayStat.count}">
+			   	 <a class="page-link" th:text="${arrayStat.count}"
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+			   	</li>
+				<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
+					th:if="${arrayStat.count} neq 1 and ${pageCurrent} neq ${arrayStat.count}">
+			   	 <a class="page-link" th:text="${arrayStat.count}"
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+			   	</li> -->
+
+			    <li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
+					th:if="${pageCurrent} gt ${arrayStat.count}">
+			   	 <a class="page-link" th:text="${arrayStat.count}"
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+				<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item active"
+					th:if="${pageCurrent} eq ${arrayStat.count}">
+			   	 <a class="page-link" th:text="${arrayStat.count}"
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+			   	<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
+					th:if="${pageCurrent} lt ${arrayStat.count}">
+			   	 <a class="page-link" th:text="${arrayStat.count}"
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+
+				<!-- 最後のページ目より手前の時は｢次へ｣ボタン有効化、最後のページでは無効化 -->
+			    <li th:unless="${pageNext} gt ${pageTotal}" class="page-item">
+			      <a class="page-link" th:href="@{'/storeList/' + ${pageNext}}">次へ</a>
+			    </li>
+			    <li th:if="${pageNext} gt ${pageTotal}" class="page-item  disabled">
+			   	 <a class="page-link">次へ</a>
+			   	</li>
+
+			  </ul>
+			</nav>
+		</form>
 		<!-- 更新・削除処理の結果表示用 <label class="text-info" th:text="${result}">結果表示</label><br/> -->
 		<div class="text-right">
 			<button class="col-md-6 offset-md-2 btn-secondary btn-lg"
 				type="button" onclick="location.href='../home'">ホームへ戻る</button>
 		</div>
 	</div>
-	<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 </body>
 </html>

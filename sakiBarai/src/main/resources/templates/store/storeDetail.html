@@ -4,10 +4,11 @@
 <head>
 <meta charset="UTF-8"></meta>
 <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<div>
+	<div th:fragment="storeDetail_contents">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="page-header">
@@ -55,11 +56,8 @@
 			</div>
 		</div>
 	</div>
-	<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 </body>
 </html>
-
-
 
 
 

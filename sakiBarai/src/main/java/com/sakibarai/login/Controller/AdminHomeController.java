@@ -16,10 +16,11 @@ public class AdminHomeController {
 	@Autowired
 	HttpSession session;
 
-	@GetMapping("/admin")
+	@GetMapping("/adminHomeLayout")
 	public String getAdmin(Model model) {
 		User user = userService.selectOneId((Integer) session.getAttribute("userId"));//ユーザーIDでユーザー名を取得
 		model.addAttribute("name", user.getUserName());//ユーザー名を登録
-		return "login/admin";
+		model.addAttribute("adminContents", "login/admin :: admin_home_contents");
+		return "login/adminHomeLayout";
 	}
 }

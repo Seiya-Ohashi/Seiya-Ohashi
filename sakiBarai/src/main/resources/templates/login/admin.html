@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<h1>アドミンホーム</h1>
-	<p>ようこそ<span th:text="${name}"></span>さん</p>
-	<a th:href="@{'/userDetail/' + ${session.userId}}">プロフィールはこちら</a>
-	<a th:href="@{/userList}">ユーザー一覧はこちら</a>
-	<a th:href="@{/storeList}">店舗一覧はこちら</a>
-	<a th:href="@{/logout}">ログアウト</a><br>
-	<a th:href="@{/home}">ホームへ戻る</a>
+	<div th:fragment="admin_home_contents">
+		<h1>アドミンホーム</h1>
+		<p>ようこそ<span th:text="${name}"></span>さん</p>
+	</div>
 </body>
 </html>

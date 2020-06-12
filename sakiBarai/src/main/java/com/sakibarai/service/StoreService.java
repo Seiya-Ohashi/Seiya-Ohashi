@@ -12,12 +12,22 @@ import com.sakibarai.login.domain.repository.StoreDao;
 public class StoreService {
 	@Autowired
 	StoreDao storedao;
-	//store_infoテーブルのデータを1件取得
+	// store_infoテーブルのデータを1件取得
 	public Store selectOneStore(int storeId){
 		return storedao.selectOneStore(storeId);
 	}
-	//store_infoテーブルのデータを全件取得
+	// store_infoテーブルのデータを全件取得
 	public List<Store>selectManyStore(){
 		return storedao.selectManyStore();
+	}
+
+	//// store_infoテーブルのデータの件数を取得
+	public int storeCount(){
+		return storedao.storeCount();
+	}
+
+	// store_infoテーブルのデータの件数を取得
+	public List<Store> selectManyStoreLimit(int dataNum, int limitNum){
+		return storedao.selectManyStoreLimit(dataNum, limitNum);
 	}
 }

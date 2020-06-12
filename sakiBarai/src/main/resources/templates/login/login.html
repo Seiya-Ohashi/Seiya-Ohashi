@@ -4,6 +4,7 @@
 <meta charset="UTF-8"></meta>
 <!-- jQueryとBootstrapのファイルを読み込む -->
 <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 <title>Login</title>
 </head>
@@ -32,7 +33,6 @@
 	<!--  ポイント２：th:href -->
 	<!--  ユーザー登録画面へのリンク -->
 	<a th:href="@{/signup}">ユーザー新規登録はこちら</a>
-	<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 </body>
 </html>
 <!--
