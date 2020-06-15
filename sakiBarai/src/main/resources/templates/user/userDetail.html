@@ -30,7 +30,6 @@
                                     <span class="text-danger"
                                         th:if="${#fields.hasErrors('userName')}"
                                         th:errors="*{userName}">
-                                        userName error
                                     </span>
                                     <span class="text-danger" th:text="${nameExists}"></span>
                                 </div>
@@ -49,7 +48,6 @@
 										<span class="text-danger"
 											th:if="${#fields.hasErrors('mailAddress')}"
 											th:errors="*{mailAddress}">
-											mailAddress error
 										</span>
 										<span class="text-danger" th:text="${mailExists}"></span>
 								</div>
@@ -67,7 +65,6 @@
                                     <span class="text-danger"
                                         th:if="${#fields.hasErrors('password')}"
                                         th:errors="*{password}">
-                                        password error
                                     </span>
                                 </div>
                             </td>
@@ -77,12 +74,12 @@
 					<button class="btn btn-primary btn ml-1 space" type="submit"
 						name="update">更新</button><br>
 					<!-- ホームへ戻るボタン -->
-					<p><p><button class="btn btn-secondary btn ml-1 space" type="button"
-						 onclick="location.href='../home'">ホームへ戻る</button></p>
+					<p><p><a class="btn btn-secondary btn ml-1 space" type="button"
+						 href="../home">ホームへ戻る</a></p>
 					 <!--  ユーザー一覧へ戻るボタン -->
 					<p><div role="presentation" sec:authorize="hasRole('ADMIN')">
-					<button class="btn btn-secondary ml-1 space" type="button"
-						 onclick="location.href='/userList'">ユーザー一覧へ戻る</button>
+					<a class="btn btn-secondary ml-1 space" type="button"
+						 href="/userList">ユーザー一覧へ戻る</a>
 					</div>
 					<p><span th:text="${result}"></span></p>
 				</form>

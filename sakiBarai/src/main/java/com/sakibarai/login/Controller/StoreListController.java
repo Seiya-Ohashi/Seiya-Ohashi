@@ -67,9 +67,9 @@ public class StoreListController {
 		int pageTotal = (int)Math.ceil(storeService.storeCount() / (double)limitNum);
 		int[] pageArray = new int[pageTotal];
 		// LIMIT句に使う(○番目以降のデータを表示させるか指定する)
-		dataNum = limitNum * page;
-		// 1ページ目から｢6｣番目以降のデータが表示されることを回避したい
-		dataNum -= 6;
+		dataNum = limitNum * (page-1);
+		// 1ページ目から｢6｣番目以降のデータが表示されることを回避したい(page-1で回避出来たからコメントアウト)
+		//dataNum -= 6;
 		// 店舗一覧の生成
 		List<Store> storeList =  storeService.selectManyStoreLimit(dataNum,limitNum);
 		// Modelに店舗一覧画面用の各値を登録

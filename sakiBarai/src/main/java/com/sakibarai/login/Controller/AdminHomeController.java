@@ -16,7 +16,7 @@ public class AdminHomeController {
 	@Autowired
 	HttpSession session;
 
-	@GetMapping("/adminHomeLayout")
+	@GetMapping("/admin")
 	public String getAdmin(Model model) {
 		User user = userService.selectOneId((Integer) session.getAttribute("userId"));//ユーザーIDでユーザー名を取得
 		model.addAttribute("name", user.getUserName());//ユーザー名を登録

@@ -13,3 +13,55 @@
 /* デスクトップPC (≥1200px) */
 @media (min-width: 1200px) {}
 
+
+body{
+	margin: 3.2rem;
+	border: 0.0rem solid #0096ff;
+}
+
+header{
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+h5{
+  color: #364e96;/*文字色*/
+  margin: 0.5rem;/*文字周りの余白*/
+}
+
+label{
+	margin-bottom: 0.3rem;
+}
+
+form{
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-bottom: 1.5rem;
+}
+
+div[id="password-form"]{
+	padding: 0.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.border {
+	padding: 0.5rem;
+	border-radius: 0.3rem;
+	box-shadow:0rem 0rem 0.5rem;
+    border-top: 0.3rem solid #0096ff!important;
+}
+
+.text-danger{
+	font-size: small;
+}
+
+.form-group{
+	padding: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.btn{
+    border-radius: 1.25rem;
+    padding: .380rem 1.3rem;
+    margin-left: 0.5rem;
+}
