@@ -14,54 +14,53 @@
 @media (min-width: 1200px) {}
 
 
-body{
-	margin: 3.2rem;
-	border: 0.0rem solid #0096ff;
+body {
+	margin: 64px;/* 上〜青線の距離 */
 }
 
-header{
-	margin-top: 1.5rem;
-	margin-bottom: 1rem;
+header {
+	margin-top: 28px;/* 青線〜見出しの距離*/
+	margin-bottom: 16px;/* 見出し〜項目名の距離 */
 }
 
-h5{
-  color: #364e96;/*文字色*/
-  margin: 0.5rem;/*文字周りの余白*/
+h5 {
+  color: #364e96;/* 文字色 */
+  margin: 20px;/* 文字周りの余白 */
 }
 
-label{
-	margin-bottom: 0.3rem;
+label {
+	margin-bottom: 6px;/* 項目名〜テキストボックスの距離 */
 }
 
-form{
-	padding-left: 1rem;
-	padding-right: 1rem;
-	padding-bottom: 1.5rem;
+form {
+	padding-left: 20px;/* 左枠と入力エリアの距離 */
+	padding-right: 20px;/* 右枠と入力エリアの距離 */
+	padding-bottom: 30px;/* 右枠と入力エリアの距離 */
 }
 
-div[id="password-form"]{
-	padding: 0.5rem;
-	margin-bottom: 1.5rem;
+div[id="password-form"] {
+	padding: 10px;
+	margin-bottom: 26px;
 }
 
 .border {
-	padding: 0.5rem;
-	border-radius: 0.3rem;
-	box-shadow:0rem 0rem 0.5rem;
-    border-top: 0.3rem solid #0096ff!important;
+	padding: 10px;
+	border-radius: 7px;
+	box-shadow: 0px 0px 10px;
+    border-top: 6px solid #0096ff!important;
 }
 
-.text-danger{
+.text-danger {
 	font-size: small;
 }
 
-.form-group{
-	padding: 0.5rem;
-	margin-bottom: 0.5rem;
+.form-group {
+	padding: 10px;
+	margin-bottom: 3px;
 }
 
-.btn{
-    border-radius: 1.25rem;
-    padding: .380rem 1.3rem;
-    margin-left: 0.5rem;
+.btn {
+    border-radius: 25px;
+    padding: 10px 25px;
+    margin-left: 10px;
 }

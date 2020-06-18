@@ -1,0 +1,56 @@
+/* スマホ (<576px) */
+@media (max-width: 575px) {}
+
+/* ファブレット (≥576px) */
+@media (min-width: 576px) and (max-width: 767px) {}
+
+/* タブレット (≥768px) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* ノートPC (≥992px) */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* デスクトップPC (≥1200px) */
+@media (min-width: 1200px) {}
+
+.col-2 {
+	padding-right: 0px;
+    padding-left: 15px;
+}
+.col {
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+.navbar {
+	padding: 7px 10px;
+	background-color: #00aefb;
+}
+
+.navbar-brand {
+	color:#ffffff;
+}
+
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+	color: #c0d6fb;
+}
+
+.navbar-logout{
+	color:#ffffff
+}
+
+.navbar .navbar-logout:hover,
+.navbar .navbar-logout:focus {
+	color: #c0d6fb;
+	text-decoration: none;
+}
+
+a {
+	display: block;
+}
+
+body {
+	margin-top:62px;
+}
+
