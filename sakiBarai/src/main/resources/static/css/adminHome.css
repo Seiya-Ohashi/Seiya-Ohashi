@@ -13,9 +13,13 @@
 /* デスクトップPC (≥1200px) */
 @media (min-width: 1200px) {}
 
+
 .col-2 {
-	padding-right: 0px;
-    padding-left: 15px;
+    padding: 0px;
+    margin: 0px;
+    position: sticky;/*固定する*/
+	position: -webkit-sticky;/*Safari用ベンダープレフィックス*/
+ 	left: 0;/*ブラウザの左からの距離はゼロ*/
 }
 .col {
 	padding-right: 0px;
@@ -24,7 +28,7 @@
 
 .navbar {
 	padding: 7px 10px;
-	background-color: #00aefb;
+	background-color: #689cf4;
 }
 
 .navbar-brand {
@@ -33,7 +37,7 @@
 
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus {
-	color: #c0d6fb;
+	color: #b9c9fb;
 }
 
 .navbar-logout{
@@ -46,8 +50,39 @@
 	text-decoration: none;
 }
 
-a {
-	display: block;
+.nav-link {
+	padding: 23px 30px;
+	/* border-bottom: 2px solid #e2e7f7; */
+}
+.nav-link img{
+    vertical-align: text-bottom;
+    position: relative;
+    right: 10px;
+}
+
+.nav-link:hover {
+    background-color: #f2f5ff;
+}
+
+.nav{
+	position: sticky;
+	/* position: fixed; */
+    /* width: 285px; */
+}
+
+.tab-content{
+	position: absolute;
+	top: 20%;
+	left: 5%;
+	/* border:3px solid red; */
+}
+
+.page-header{
+	width:max-content;
+}
+
+table.table.table-bordered.table-hover{
+	width:max-content;
 }
 
 body {

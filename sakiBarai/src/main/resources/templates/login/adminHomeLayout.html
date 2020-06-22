@@ -4,15 +4,12 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8"></meta>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- Bootstrapの設定 -->
-<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
+<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" rel="stylesheet"></link>
+<link th:href="@{/css/adminHome.css}" rel="stylesheet"></link>
 <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
-
-<!-- CSSの読込 -->
-<link th:href="@{/css/adminHome.css}" rel="stylesheet"></link>
 <title>Home</title>
 </head>
 <body>
@@ -27,43 +24,20 @@
 		</nav>
 	</header>
 	<!-- ===== サイドバー ===== -->
-	<div class="row">
-		<div class="col-2">
-			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-				<a class="nav-link active" id="v-pills-userList-tab" data-toggle="pill" th:href="@{'/userList'}" role="tab" aria-controls="v-pills-userList" aria-selected="falue">ユーザー一覧</a>
-				<a class="nav-link" id="v-pills-storeList-tab" data-toggle="pill" th:href="@{'/storeList'}" role="tab" aria-controls="v-pills-storeList" aria-selected="false">店舗一覧</a>
-				<!-- <li role="presentation"><a th:href="@{'/userList'}">ユーザ一覧</a></li> -->
+	 <div class="row">
+			<div class="col-2">
+				<div class="nav flex-column" aria-orientation="vertical">
+					<a class="nav-link" th:href="@{'/userList'}"><img th:src=@{/images/users.svg}>ユーザー一覧</a>
+					<a class="nav-link" th:href="@{'/storeList'}"><img th:src=@{/images/shopping-bag.svg}>店舗一覧</a>
+					<!-- <li role="presentation"><a th:href="@{'/userList'}">ユーザ一覧</a></li> -->
+				 </div>
 			</div>
-		</div>
 		<!-- ===== コンテンツ ===== -->
 		<div class="col">
-			<div class="tab-content" id="v-pills-tabContent">
-				<div class="tab-pane fade show active" id="v-pills-userList-tab" role="tabpanel" aria-labelledby="v-pills-userList-tab">
-					<div th:include="__${adminContents}__"></div>
-
-			</div>
-		</div>
-	</div>
-	<!--  <div class="container-fluid border border-danger">
-		<div class="row">
-			<div class="col-sm-2 sidebar">
-				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation"><a th:href="@{'/admin'}">アドミンホーム</a></li>
-					<li role="presentation"><a th:href="@{'/userList'}">ユーザ管理</a>
-					</li>
-					<li role="presentation"><a th:href="@{'/storeList'}">店舗一覧</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- ===== コンテンツ =====
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-10 col-sm-offset-2 main">
+			<div class="tab-content">
 				<div th:include="__${adminContents}__"></div>
 			</div>
 		</div>
-	</div>-->
+	</div>
 </body>
 </html>

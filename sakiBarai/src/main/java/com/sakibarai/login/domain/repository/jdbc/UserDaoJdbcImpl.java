@@ -34,6 +34,8 @@ public class UserDaoJdbcImpl implements UserDao{
 	//		Map<String,Object>map = jdbc.queryForMap("SELECT user_name FROM user_info "
 	//+ "WHERE user_name = ?", userName);
 
+	//ユーザー名の重複チェック
+	//(検索結果が1件の時→重複している 0件の時→重複していない)
 	@Override
 	public boolean selectDuplicationName(String userName)throws DataAccessException{
 		//1件取得
@@ -48,6 +50,8 @@ public class UserDaoJdbcImpl implements UserDao{
 		return nameExists;
 	}
 
+	//メールアドレスの重複チェック
+	//(検索結果が1件の時→重複している 0件の時→重複していない)
 	@Override
 	public boolean selectDuplicationMail(String mailAddress)throws DataAccessException{
 		//1件取得
@@ -116,7 +120,7 @@ public class UserDaoJdbcImpl implements UserDao{
 	// 戻り値はMap<String,Object>型
 	// 第1引数にSQL文、第2引数以降にPreparedStatementを指定
 	// 戻り値のMapのgetメソッドにカラム名を指定することで、値を取得
-	// 複数件取得する場合と、使い方はほとんど一緒
+	// 複数件取得する場合と、使い方はほとんど一緒SELECT * FROM user_info WHERE role NOT LIKE "ROLE_ADMIN"
 	//---------------------------------------------------------------
 
 	//Userテーブルの全データを取得するメソッド
@@ -125,7 +129,7 @@ public class UserDaoJdbcImpl implements UserDao{
 		//複数件のselect
 		//user_infoテーブルのデータを全件取得
 		List<Map<String,Object>>getList = jdbc.queryForList("SELECT * "
-		+ "FROM user_info");
+		+ "FROM user_info WHERE role NOT LIKE 'ROLE_ADMIN'");
 		//結果返却用の変数
 		List<User>userList = new ArrayList<>();
 		//取得したデータを結果返却用のListに格納していく

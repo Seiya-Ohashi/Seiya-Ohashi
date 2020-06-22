@@ -1,0 +1,74 @@
+<!DOCTYPEhtml>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Bootstrapの設定 -->
+<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/userDetail.css}" rel="stylesheet">
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:fragment="userDetail_contents">
+		<div class="mx-auto" style="width: 450px;">
+			<div class="border" id="border">
+				<header>
+					<h5 class="text-center">プロフィール編集</h5>
+				</header>
+				<article>
+					<form method="post" th:action="@{'/userDetail/' + ${userId}}"
+						th:object="${userDetailForm}">
+							<!-- ユーザー名の入力エリア -->
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('userName')} ? 'has-error'">
+							<label for="userName">お名前</label>
+							<input type="text" class="form-control" th:field="*{userName}"/>
+							<!-- 個別エラーメッセージの表示 -->
+							<span class="text-danger" th:if="${#fields.hasErrors('userName')}"
+								th:errors="*{userName}"></span>
+							<span class="text-danger"
+								th:text="${nameExists}"></span>
+						</div>
+						<!-- メールアドレスの入力エリア -->
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('mailAddress')} ? 'has-error'">
+							<label for="mailAddress">メールアドレス</label>
+							<input type="text" class="form-control" th:field="*{mailAddress}"/>
+							<!-- 個別エラーメッセージの表示 -->
+							<span class="text-danger" th:if="${#fields.hasErrors('mailAddress')}"
+								th:errors="*{mailAddress}"></span>
+							<span class="text-danger"
+								th:text="${mailExists}"></span>
+						</div>
+						<!-- パスワードの入力エリア -->
+						<div class="form-group" id="password-form"
+							th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+							<label for="password">パスワード</label>
+							<input type="text" class="form-control" th:field="*{password}"/>
+							<!-- 個別エラーメッセージの表示 -->
+							<span class="text-danger" th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}">
+							</span>
+						</div>
+						<!-- 更新ボタン -->
+						<button class="btn btn-primary btn ml-1 space" type="submit"
+							name="update">更新</button><br>
+						<!-- ホームへ戻るボタン -->
+						<p><p><a class="btn btn-secondary btn ml-1 space" type="button"
+							 href="../home">ホームへ戻る</a></p>
+						 <!--  ユーザー一覧へ戻るボタン -->
+						<p><div role="presentation" sec:authorize="hasRole('ADMIN')">
+						<a class="btn btn-secondary ml-1 space" type="button"
+							 href="/userList">ユーザー一覧へ戻る</a>
+						</div>
+						<p><span th:text="${result}"></span></p>
+					</form>
+				</article>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

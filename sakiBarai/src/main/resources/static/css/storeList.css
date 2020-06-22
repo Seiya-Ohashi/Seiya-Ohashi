@@ -1,0 +1,23 @@
+/* スマホ (<576px) */
+@media (max-width: 575px) {}
+
+/* ファブレット (≥576px) */
+@media (min-width: 576px) and (max-width: 767px) {}
+
+/* タブレット (≥768px) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* ノートPC (≥992px) */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* デスクトップPC (≥1200px) */
+@media (min-width: 1200px) {}
+
+body {
+	margin: 64px;/* 上〜青線の距離 */
+}
+
+header {
+	margin-top: 28px;/* 青線〜見出しの距離*/
+	margin-bottom: 16px;/* 見出し〜項目名の距離 */
+}

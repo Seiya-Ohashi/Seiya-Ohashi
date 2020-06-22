@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"rel="stylesheet"></link>
 <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
@@ -32,19 +33,33 @@
 				</td>
 			</tr>
 		</table>
+
+		<!--  <th:block th:each="store : ${storeList}">
+			<div class="card" style="width: 18rem;">
+			<a th:href="@{'/storeDetail/' + ${store.storeId}}" class="card-link">
+				<img th:src=@{/images/nikujaga.jpg} class="card-img-top"></a>
+				<div class="card-body">
+					<h4 class="card-title" th:text="${store.storeName}"></h4>
+				    <p th:text="${store.address1 + '&nbsp;'
+									+store.address2 + '&nbsp;'
+									+store.address3 + '&nbsp;'
+									+store.address4}"></p>
+			  </div>
+			</div>
+		</th:block>-->
 		<!-- ページ送り用 -->
 		<form action="post" th:action="@{'/storeList'}">
 			<nav aria-label="...">
-			  <ul class="pagination">
+			  <ul class="pagination justify-content-center">
 				<!-- 1ページ目の時は｢前へ｣ボタン無効化、2ページ目以降は表示 -->
 			    <li th:if="${pagePrev} eq 0" class="page-item disabled">
-			   	 <a class="page-link">前へ</a>
+			   		<a class="page-link">前へ</a>
 			   	</li>
 			   	<li th:if="${pagePrev} eq 1" class="page-item">
-			   	 <a class="page-link" th:href="@{'/storeList'}">前へ</a>
+			   		<a class="page-link" th:href="@{'/storeList'}">前へ</a>
 			   	</li>
 			    <li th:if="${pagePrev} gt 1" class="page-item">
-			   	 <a class="page-link" th:href="@{'/storeList/' + ${pagePrev}}">前へ</a>
+			   		<a class="page-link" th:href="@{'/storeList/' + ${pagePrev}}">前へ</a>
 			   	</li>
 
 				<!-- StoreListControllerの配列(pageArray)に応じて変動 -->
@@ -97,8 +112,8 @@
 		</form>
 		<!-- 更新・削除処理の結果表示用 <label class="text-info" th:text="${result}">結果表示</label><br/> -->
 		<div class="text-right">
-			<a class="col-md-6 offset-md-2 btn-secondary btn-lg"
-				type="button" href="../home">ホームへ戻る</a>
+			<p><a class="btn btn-outline-secondary" type="button"
+					 href="../home" style="border-radius: 25px; padding: 10px 2px; margin-left: 10px; width: 230px;">ホームへ戻る</a></p>
 		</div>
 	</div>
 </body>
