@@ -1,21 +1,14 @@
-/* スマホ (<576px) */
-@media (max-width: 575px) {}
+.container{
+	width: 100%;
+	max-width: 550px;/* PCだと入力フォームが横長になる事を回避 */
+}
 
-/* ファブレット (≥576px) */
-@media (min-width: 576px) and (max-width: 767px) {}
-
-/* タブレット (≥768px) */
-@media (min-width: 768px) and (max-width: 991px) {}
-
-/* ノートPC (≥992px) */
-@media (min-width: 992px) and (max-width: 1199px) {}
-
-/* デスクトップPC (≥1200px) */
-@media (min-width: 1200px) {}
-
+/* @media (orientation: landscape) and (max-width: 812px){ */
+/* デバイス横向きで画面の横幅が 812px 以下の場合の記述 */
+/*  .container */
 
 body {
-	margin: 64px;/* 上〜青線の距離 */
+	margin-top: 64px;/* 上〜青線の距離 */
 }
 
 header {

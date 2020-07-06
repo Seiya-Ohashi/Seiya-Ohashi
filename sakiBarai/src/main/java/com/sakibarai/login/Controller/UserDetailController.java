@@ -83,16 +83,15 @@ public class UserDetailController {
 		if(nameExists == true && mailExists == true
 			&& !saveName.equals(user.getUserName())
 			&& !saveMail.equals(user.getMailAddress())){
-			model.addAttribute("nameExists", "ユーザー名が重複しています");
-			model.addAttribute("mailExists", "メールアドレスが重複しています");
+			model.addAttribute("exists", "ユーザー名またはメールアドレスが重複しています");
 			return getUserDetail(userId, form, model);
 		//入力したユーザー名が別のアカウントと被っていたらエラー
 		}else if(nameExists == true && !saveName.equals(user.getUserName())){
-			model.addAttribute("nameExists", "ユーザー名が重複しています");
+			model.addAttribute("exists", "ユーザー名またはメールアドレスが重複しています");
 			return getUserDetail(userId, form, model);
 		//入力したメールアドレスが別のアカウントと被っていたらエラー
 		}else if(mailExists == true && !saveMail.equals(user.getMailAddress())){
-			model.addAttribute("mailExists", "メールアドレスが重複しています");
+			model.addAttribute("exists", "ユーザー名またはメールアドレスが重複しています");
 			return getUserDetail(userId, form, model);
 		}else{
 			// 更新実行

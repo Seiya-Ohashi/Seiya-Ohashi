@@ -66,14 +66,13 @@ public class SignupController {
 		boolean nameExists = userService.selectDuplicationName(user.getUserName());
 		boolean mailExists = userService.selectDuplicationMail(user.getMailAddress());
 		if(nameExists == true && mailExists == true){
-			model.addAttribute("nameExists", "ユーザー名が重複しています");
-			model.addAttribute("mailExists", "メールアドレスが重複しています");
+			model.addAttribute("exists", "ユーザー名またはメールアドレスが重複しています");
 			return getSignUp(form);
 		}else if(nameExists == true){
-			model.addAttribute("nameExists", "ユーザー名が重複しています");
+			model.addAttribute("exists", "ユーザー名またはメールアドレスが重複しています");
 			return getSignUp(form);
 		}else if(mailExists == true){
-			model.addAttribute("mailExists", "メールアドレスが重複しています");
+			model.addAttribute("exists", "ユーザー名またはメールアドレスが重複しています");
 			return getSignUp(form);
 		}else{
 			//ユーザー登録処理

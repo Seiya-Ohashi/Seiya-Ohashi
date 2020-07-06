@@ -33,7 +33,7 @@
                                         th:if="${#fields.hasErrors('userName')}"
                                         th:errors="*{userName}">
                                     </span>
-                                    <span class="text-danger" th:text="${nameExists}"></span>
+                                    <span class="text-danger" th:text="${exists}"></span>
                                 </div>
 							</td>
 						</tr>
@@ -51,7 +51,7 @@
 											th:if="${#fields.hasErrors('mailAddress')}"
 											th:errors="*{mailAddress}">
 										</span>
-										<span class="text-danger" th:text="${mailExists}"></span>
+										<span class="text-danger" th:text="${exists}"></span>
 								</div>
 							</td>
 						</tr>

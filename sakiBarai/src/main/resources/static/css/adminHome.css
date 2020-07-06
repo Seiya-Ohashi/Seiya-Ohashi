@@ -13,7 +13,7 @@
 /* デスクトップPC (≥1200px) */
 @media (min-width: 1200px) {}
 
-
+/* サイドバー */
 .col-2 {
     padding: 0px;
     margin: 0px;
@@ -21,11 +21,13 @@
 	position: -webkit-sticky;/*Safari用ベンダープレフィックス*/
  	left: 0;/*ブラウザの左からの距離はゼロ*/
 }
+/* コンテンツ部分 */
 .col {
 	padding-right: 0px;
     padding-left: 0px;
 }
 
+/* ここからヘッダー */
 .navbar {
 	padding: 7px 10px;
 	background-color: #689cf4;
@@ -69,7 +71,10 @@
 	/* position: fixed; */
     /* width: 285px; */
 }
+/* ヘッダー終わり */
 
+
+/* コンテンツ内 */
 .tab-content{
 	position: absolute;
 	top: 20%;
@@ -77,8 +82,9 @@
 	/* border:3px solid red; */
 }
 
+/* コンテンツ内見出し */
 .page-header{
-	width:max-content;
+	width:auto;
 }
 
 table.table.table-bordered.table-hover{

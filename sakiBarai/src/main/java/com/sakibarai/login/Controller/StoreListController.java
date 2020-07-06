@@ -59,6 +59,13 @@ public class StoreListController {
 			return "store/storeList";
 		}
 	}
+	@GetMapping("/storeList/{result}")
+	public String getStoreListaaa(@PathVariable("result") String searchResult, Model model) {
+		model.addAttribute("aaa",searchResult);
+		System.out.print(searchResult);
+
+		return "store/storeList";
+	}
 
 	@RequestMapping("/storeList/{arrayStat.count}")
 	public String postStoreListLimit(@PathVariable("arrayStat.count")int page, Model model){
