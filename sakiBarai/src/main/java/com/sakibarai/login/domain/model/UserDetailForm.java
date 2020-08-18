@@ -14,7 +14,7 @@ import lombok.Data;
 //パスワードが空文字の時→パスワード以外を更新
 //パスワード欄に半角英数字1文字以上→パスワードも更新
 
-@Data//getterやsetterなどを自動で作成(lombok)
+@Data //getterやsetterなどを自動で作成(lombok)
 public class UserDetailForm {
 	//ユーザーID
 	private int userId;

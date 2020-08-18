@@ -10,6 +10,39 @@
 <body>
 	<div th:fragment="admin_home_contents" th:remove="tag">
 		<h1>アドミンホーム</h1>
+			<div class="items">
+				<table>
+					<tbody>
+						<tr>
+							<th class="info col-xs-2">店舗名</th>
+							<th class="info col-xs-2" colspan="3">住所</th>
+							<th class="info col-xs-2">店舗詳細</th>
+						</tr>
+						<tr>
+							<td class="item">1</td>
+						</tr>
+						<tr>
+							<td class="item">2</td>	
+						</tr>
+						<tr>
+							<td class="item">3</td>	
+						</tr>
+						<tr>
+							<td class="item">4</td>	
+						</tr>
+						<tr>
+							<td class="item">5</td>	
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<script type="text/javascript" src="/js/jquery.pagination.js"></script>
+		<script>
+			$('.items').pagination({
+				itemElement : '.item', // アイテムの要素
+				displayItemCount : 6
+			});
+		</script>
 		<p>ようこそ<span th:text="${name}"></span>さん</p>
 		<a href="../home">ホームへ戻る</a>
 	</div>

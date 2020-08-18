@@ -17,11 +17,11 @@ public class StoreService {
 		return storedao.selectOneStore(storeId);
 	}
 	// store_infoテーブルのデータを全件取得
-	public List<Store>selectManyStore(){
+	public List<Store> selectManyStore(){
 		return storedao.selectManyStore();
 	}
 
-	//// store_infoテーブルのデータの件数を取得
+	// store_infoテーブルのデータの件数を取得
 	public int storeCount(){
 		return storedao.storeCount();
 	}
@@ -29,5 +29,15 @@ public class StoreService {
 	// store_infoテーブルのデータの件数を取得
 	public List<Store> selectManyStoreLimit(int dataNum, int limitNum){
 		return storedao.selectManyStoreLimit(dataNum, limitNum);
+	}
+
+	//店舗名で部分一致検索をした際、一致したstore_infoテーブルのデータの件数を取得
+	public int storeCountSearch(String storeName){
+		return storedao.storeCountSearch(storeName);
+	}
+
+	//店舗名で部分一致検索をした際、一致したstore_infoテーブルのデータを全件取得
+	public List<Store> selectManyStoreSearch(String storeName){
+		return storedao.selectManyStoreSearch(storeName);
 	}
 }

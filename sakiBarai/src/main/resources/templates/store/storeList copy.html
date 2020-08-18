@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"></meta>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" rel="stylesheet">
-<link th:href="@{/css/storeList.css}" rel="stylesheet">
+<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"rel="stylesheet"></link>
+<!-- <link th:href="@{/css/storeList.css}" rel="stylesheet"> -->
 <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
 </head>
@@ -94,22 +94,19 @@
 			    <li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
 					th:if="${pageCurrent} gt ${arrayStat.count}">
 			   	 <a class="page-link" th:text="${arrayStat.count}"
-						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
-			    </li>
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
 
 				<!-- 現在のページ数をだけを表示(4ページ中の3ページ目にいるなら、｢3｣の部分を表示) -->
 				<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item active"
 					th:if="${pageCurrent} eq ${arrayStat.count}">
 			   	 <a class="page-link" th:text="${arrayStat.count}"
-						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
-			    </li>
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
 
 				<!-- 現在のページよりも、後のページだけを表示(4ページ中の3ページ目にいるなら、｢4｣の部分を表示) -->
 			   	<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
 					th:if="${pageCurrent} lt ${arrayStat.count}">
 			   	 <a class="page-link" th:text="${arrayStat.count}"
-						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
-			    </li>
+			   	 	th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
 
 				<!-- 最後のページ目より手前の時は｢次へ｣ボタン有効化、最後のページでは無効化 -->
 			    <li th:unless="${pageNext} gt ${pageTotal}" class="page-item">

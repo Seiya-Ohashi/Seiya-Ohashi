@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"rel="stylesheet"></link>
+<!-- <link th:href="@{/css/storeList.css}" rel="stylesheet"> -->
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:fragment="storeList_contents">
+
+
+		<div class="container-fluid text-center" style="padding: 0px;margin-right: auto;margin-left: auto;width: 100%;min-height: 300px;margin-top: 1.5%;margin-bottom: 1.5%;font-size: 0.6em;line-height: 1.5em;">
+			<ul class="list-group d-md-flex" style="width: 100%;">
+				<li class="list-group-item d-flex align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center" style="width: 100%;">
+					<img src="https://asset.oceans-nadia.com/upload/save_image/b7/b72943e85d0f.JPG?impolicy=insidewm&w=410&h=614" style="margin-right: 5px;max-width: 12%;" />
+					<div class="text-left">
+						<span class="d-block">俺のカレー</span>
+						<span class="d-block">東京都 港区 12-34-56 Curryビル 2階</span>
+				</div>
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="row">
+			<div class="page-header">
+				<h1>店舗一覧</h1>
+				<form method="get" th:action="@{'/storeList/search'}" class="form-inline" id="search">
+					<input type="search" name="keyword" class="form-control" placeholder="店舗名" aria-label="店舗名" value="">
+					<button type="submit" class="btn btn-outline-primary" id="submit">検索</button>
+				</form>
+				<script th:src="@{/js/search.js}" type="text/javascript" th:inline="javascript"></script>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="items">
+				<table class="table table-bordered table-hover table-striped">
+					<tr>
+						<th class="info col-xs-2">店舗名</th>
+						<th class="info col-xs-2" colspan="3">住所</th>
+						<th class="info col-xs-2">店舗詳細</th>
+					</tr>
+						<tr class="storeList"  th:each="store : ${storeList}">
+							<td th:text="${store.storeName}"></td>
+							<td colspan="3"
+								th:text="${store.address1 + '&nbsp;'
+											+store.address2 + '&nbsp;'
+											+store.address3 + '&nbsp;'
+											+store.address4}">
+							</td>
+							<td>
+								<!-- 店舗詳細画面へのリンク -->
+								<!-- <a class="btn btn-primary"
+								th:href="@{'/storeDetail/' + ${store.storeId}}"> 詳細 </a>
+							</td>
+						</tr>
+				</table>
+			</div>
+		</div> -->
+		<!--  <th:block th:each="store : ${storeList}">
+			<div class="card" style="width: 18rem;">
+			<a th:href="@{'/storeDetail/' + ${store.storeId}}" class="card-link">
+				<img th:src=@{/images/nikujaga.jpg} class="card-img-top"></a>
+				<div class="card-body">
+					<h4 class="card-title" th:text="${store.storeName}"></h4>
+					<p th:text="${store.address1 + '&nbsp;'
+									+store.address2 + '&nbsp;'
+									+store.address3 + '&nbsp;'
+									+store.address4}"></p>
+			</div>
+			</div>
+		</th:block>-->
+		
+		<!-- ページ送り用 -->
+		<div class="row">
+			<form action="post" class="pagination-form" th:action="@{'/storeList'}" >
+				<nav>
+				<ul class="pagination justify-content-center">
+					<!-- 1ページ目の時は｢前へ｣ボタン無効化、2ページ目以降は表示 -->
+					<li th:if="${pagePrev} eq 0" class="page-item disabled">
+						<a class="page-link">前へ</a>
+					</li>
+					<li th:if="${pagePrev} eq 1" class="page-item">
+						<a class="page-link" th:href="@{'/storeList'}">前へ</a>
+					</li>
+					<li th:if="${pagePrev} gt 1" class="page-item">
+						<a class="page-link" th:href="@{'/storeList/' + ${pagePrev}}">前へ</a>
+					</li>
+
+					<!-- StoreListControllerの配列(pageArray)に応じて変動 -->
+					<!-- <li th:if="${pageCurrent} eq 1" class="page-item active">
+					<a class="page-link" th:href="@{'/storeList'}">1</a>
+					</li>
+					<li th:if="${pageCurrent} neq 1" class="page-item">
+					<a class="page-link" th:href="@{'/storeList'}">1</a>
+					</li>
+					<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item active"
+						th:if="${arrayStat.count} neq 1 and ${pageCurrent} eq ${arrayStat.count}">
+					<a class="page-link" th:text="${arrayStat.count}"
+						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+					</li>
+					<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
+						th:if="${arrayStat.count} neq 1 and ${pageCurrent} neq ${arrayStat.count}">
+					<a class="page-link" th:text="${arrayStat.count}"
+						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+					</li> -->
+
+
+					<!-- 現在のページよりも前のページ数を表示(例:4ページ中の3ページ目にいるなら、ページャーの｢1｣｢2｣の部分を表示) -->
+					<!-- th:if = 現在のページ(例:3ページ目) < カウント数(1~2)の時だけ、｢1｣｢2｣の部分を表示 -->
+					<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
+						th:if="${pageCurrent} gt ${arrayStat.count}">
+					<a class="page-link" th:text="${arrayStat.count}"
+						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+
+					<!-- 現在のページ数をだけを表示(4ページ中の3ページ目にいるなら、｢3｣の部分を表示) -->
+					<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item active"
+						th:if="${pageCurrent} eq ${arrayStat.count}">
+					<a class="page-link" th:text="${arrayStat.count}"
+						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+
+					<!-- 現在のページよりも、後のページだけを表示(4ページ中の3ページ目にいるなら、｢4｣の部分を表示) -->
+					<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item"
+						th:if="${pageCurrent} lt ${arrayStat.count}">
+					<a class="page-link" th:text="${arrayStat.count}"
+						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
+
+					<!-- 最後のページ目より手前の時は｢次へ｣ボタン有効化、最後のページでは無効化 -->
+					<li th:unless="${pageNext} gt ${pageTotal}" class="page-item">
+					<a class="page-link" th:href="@{'/storeList/' + ${pageNext}}">次へ</a>
+					</li>
+					<li th:if="${pageNext} gt ${pageTotal}" class="page-item  disabled">
+					<a class="page-link">次へ</a>
+					</li>
+				</ul>
+				</nav>
+			</form>
+		
+			<!-- 更新・削除処理の結果表示用 <label class="text-info" th:text="${result}">結果表示</label><br/> -->
+			<div class="text-right">
+				<p><a class="btn btn-outline-secondary" type="button"
+						href="../home" style="border-radius: 25px; padding: 10px 2px; margin-left: 10px; width: 230px;">ホームへ戻る</a></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

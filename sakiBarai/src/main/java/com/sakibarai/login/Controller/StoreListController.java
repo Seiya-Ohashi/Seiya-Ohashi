@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sakibarai.login.domain.model.Store;
 import com.sakibarai.service.StoreService;
@@ -19,15 +21,6 @@ public class StoreListController {
 	StoreService storeService;
 	@Autowired
 	HttpSession session;
-	//店舗一覧画面のGET用メソッド
-	//a@GetMapping("/storeList")
-	//apublic String getStoreList(Model model){
-	//店舗一覧の生成
-	//aList<Store> storeList =  storeService.selectManyStore();
-	//Modelにユーザーリストを登録
-	//amodel.addAttribute("storeList",storeList);
-	//areturn "store/storeList";
-	//a}
 
 	// 6件まで表示(表示の上限)
 	int limitNum = 6;
@@ -59,12 +52,14 @@ public class StoreListController {
 			return "store/storeList";
 		}
 	}
-	@GetMapping("/storeList/{result}")
-	public String getStoreListaaa(@PathVariable("result") String searchResult, Model model) {
-		model.addAttribute("aaa",searchResult);
-		System.out.print(searchResult);
-
-		return "store/storeList";
+	
+	// 店舗一覧画面のGET用メソッド
+	@GetMapping("/storeList/search")
+	@ResponseBody
+	public List<Store> getStoreListSearch(Model model, @RequestParam("keyword") String storeName){
+		// 店舗一覧の生成
+		List<Store> storeList = storeService.selectManyStoreSearch(storeName);
+		return storeList;
 	}
 
 	@RequestMapping("/storeList/{arrayStat.count}")

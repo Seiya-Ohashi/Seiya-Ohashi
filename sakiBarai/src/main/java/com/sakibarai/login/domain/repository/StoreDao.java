@@ -21,4 +21,10 @@ public interface StoreDao {
 
 	// store_infoテーブルのデータを複数件取得
 	public List<Store> selectManyStoreLimit(int dataNum, int limitNum) throws DataAccessException;
+
+	//店舗名で部分一致検索をした際、一致したstore_infoテーブルのデータの件数を取得
+	public int storeCountSearch(String storeName) throws DataAccessException;
+
+	// 店舗名で部分一致検索をした際、一致したstore_infoテーブルのデータを取得
+	public List<Store> selectManyStoreSearch(String storeName) throws DataAccessException;
 }

@@ -14,7 +14,7 @@ import lombok.Data;
 //@Pattern	指定した正規表現に一致するかどうか
 //@Length	文字列の長さが指定した範囲内であるか
 
-@Data//getterやsetterなどを自動で作成(lombok)
+@Data //getterやsetterなどを自動で作成(lombok)
 public class SignupForm {
 	//ユーザーID
 	private int userId;

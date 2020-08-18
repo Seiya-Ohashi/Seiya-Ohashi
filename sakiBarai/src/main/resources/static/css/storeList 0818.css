@@ -1,4 +1,4 @@
-/* @media (min-width: 1025px){
+@media (min-width: 1025px){
     body {
         font-size: 1rem;
         width: 100%;
@@ -88,7 +88,7 @@
         max-height: 100%;
         object-fit: contain;
     }
-} */
+}
 
 
 li.current[aria-selected="true"] a.page-link{
@@ -98,7 +98,7 @@ li.current[aria-selected="true"] a.page-link{
     border-color: #007bff;
 }
 
-/* header {
+header {
     grid-area: header;
 }
 main {
@@ -111,47 +111,47 @@ footer {
     grid-area: footer;
     justify-self: center;
     color: black;
-} */
+}
 
-/* li.list-group-item{
-    list-style: none; */
-    /* letter-spacing: -1em; 文字間を詰める */
-    /* white-space: nowrap; 自動で折り返ししない */
-    /* padding-left:1%;
-} */
+li.list-group-item{
+    list-style: none;
+    letter-spacing: -1em; /* 文字間を詰める */
+    white-space: nowrap; /* 自動で折り返ししない */
+    padding-left:1%;
+}
 
-/* dl.list-unstyled{
+dl.list-unstyled{
     display:flex;
 }
 
 dt.backGroundImage{
-    display: contents; */
+    display: contents;
     /*   display: inline-block; */
     /*   background-image: url(https://1.bp.blogspot.com/-nfvcUQSt7_Q/XQjug16FpwI/AAAAAAABTS8/L9ihxS-2nnYgg5TFFdOpagSN2_EhsbfcwCLcBGAs/s800/syokki_ochawan.png); */
-    /* min-width: 220px;
-    min-height: 220px; */
+    min-width: 220px;
+    min-height: 220px;
     /*   background-position: center;
     background-size: contain; */
-    /* background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-color: #E5E5E5;
     background-size: auto 100%;
     background-position: 50%;
-} */
+}
 
-/* dd{
+dd{
     display: inline-block;
-    width: 65%; */
-    /* letter-spacing: normal; 文字間を元に戻す */
-    /* white-space: normal; 自動で折り返し(元に戻す) */
-    /* padding-top:7%;
+    width: 65%;
+    letter-spacing: normal; /* 文字間を元に戻す */
+    white-space: normal; /* 自動で折り返し(元に戻す) */
+    padding-top:7%;
     padding-left:0;
-} */
+}
 
-/* dd h6.storeName{
+dd h6.storeName{
     font-weight: 700;
-} */
+}
 
-/* dd img.pin{
+dd img.pin{
     position: relative;
     left: 0px;
     top: -3px;
@@ -168,20 +168,20 @@ a.storeLink{
     z-index: 3;
     outline: 0;
     box-shadow: none;
-} */
+}
 /* 背景用→ #F3F6F9 */
 
 
 
-body {
-	margin: 64px;/*上〜青線の距離 */
-}
+/* body { */
+	/* margin: 64px;上〜青線の距離 */
+/* } */
 
-header {
-	 margin-top: 28px;/*青線〜見出しの距離 */
-	 margin-bottom: 16px;/*見出し〜項目名の距離 */
-}
- #jquery-sample {
+/* header { */
+	/* margin-top: 28px;青線〜見出しの距離 */
+	/* margin-bottom: 16px;見出し〜項目名の距離 */
+/* } */
+/* #jquery-sample {
     margin: 10px;
     width: 200px;
 }
@@ -192,4 +192,4 @@ header {
     background-color: yellow;
     border: 1px solid gray;
     border-radius: 10px;
-}
+} */
