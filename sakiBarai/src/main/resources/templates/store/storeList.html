@@ -97,7 +97,7 @@
 						th:href="@{'/storeList/' + ${arrayStat.count}}"></a>
 			    </li>
 
-				<!-- 現在のページ数をだけを表示(4ページ中の3ページ目にいるなら、｢3｣の部分を表示) -->
+				<!-- 現在のページ数だけを表示(4ページ中の3ページ目にいるなら、｢3｣の部分を表示) -->
 				<li th:each="pageArray, arrayStat : ${pageArray}" class="page-item active"
 					th:if="${pageCurrent} eq ${arrayStat.count}">
 			   	 <a class="page-link" th:text="${arrayStat.count}"
